@@ -11,8 +11,8 @@ Assignment: ex2
 #define MAX_SUM 9
 
 int main() {
-	int option = 0 ;
-	while ((option != 7) == 1) {
+	char option = '0' ;
+	while ((option != '7') == 1) {
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
@@ -22,12 +22,12 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		if (scanf("%1d", &option) != 1 || option < 1 || 7 < option) {
+		if (scanf(" %c", &option) != 1 || option < '1' || '7' < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
 		}
-		if (option == 7) {
+		if (option == '7') {
 			printf("Thank you for your journey through Numeria!\n") ;
 			break ;
 		}
@@ -35,7 +35,7 @@ int main() {
 		switch (option) {
 
 			// Case 1: Happy Face
-			case 1: {
+			case '1': {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
     			int faceSize = 0 ;
 				// symbols --> face size --> make face
@@ -140,7 +140,7 @@ int main() {
 			}
 
 			// Case 2
-			case 2: {
+			case '2': {
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -231,7 +231,7 @@ int main() {
 			}
 
 			// Case 3
-			case 3: {
+			case '3': {
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -380,7 +380,7 @@ int main() {
 			}
 
 			// Case 5: Happy numbers
-			case 5: {
+			case '5': {
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -430,7 +430,7 @@ int main() {
 			}
 
 			// Case 6: Festival of Laughter
-			case 6: {
+			case '6': {
 				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
 				char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
 				int smileNumber, cheerNumber;
