@@ -458,11 +458,11 @@ int main() {
 			while (valid != 2) {
 				valid = 1 ;
 				while ((c = getchar()) == ' ') ;
-				// if (c == '\n') {
-				// 	printf("Only 2 different positive numbers in the given format"
-				// 			" are allowed for the festival, please try again:\n") ;
-				// 	continue ;
-				// }
+				if (c == '\n') {
+					printf("Only 2 different positive numbers in the given format"
+							" are allowed for the festival, please try again:\n") ;
+					continue ;
+				}
 
 				char identifySmile[7] = {0} ;
 				int ind = 0 ;
@@ -658,9 +658,9 @@ int main() {
 					} else if (c == ' ') {
 						c = getchar() ;
 						if (c < ' ' || '9' < c) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
+							//if (c != '\n') {
+							while ((c = getchar()) != '\n' && c != EOF) ;
+							//}
 							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
@@ -678,7 +678,7 @@ int main() {
 						maximum = 0 ;
 						break ;
 					}
-					// ungetc(c, stdin) ;
+					ungetc(c, stdin) ;
 					maximumOut = scanf(" %d", &maximum) ;
 					while ((c = getchar()) == ' ') ;
 					if (maximumOut == 0 || maximum < 1 || c != '\n') {
