@@ -60,7 +60,7 @@ int main() {
 					symbolsInput[ind++] = c ;
 				}
 				symbolsInput[ind] = '\0' ;					
-				if (!valid || ind != SYMBOLS_INPUT_SIZE) {
+				if (!valid) {
 					// if (c != '\n') {
 					while ((c = getchar()) != '\n' && c != EOF) ;
 					// }
@@ -89,7 +89,9 @@ int main() {
 				while (faceSizeInput[i] == '0') {
 					i++ ;
 				}
-				if (i != ind) {
+				if (i == ind) {
+					valid = 0 ;
+				} else {
 					int lastDigit = faceSizeInput[ind - 1] ;
 					if (lastDigit % 2 == 0) {
 						valid = 0 ;
@@ -104,7 +106,7 @@ int main() {
 						}
 					}
 				}
-				if (!valid || i == ind) {
+				if (!valid) {
 					// if (c != '\n') {
 					while ((c = getchar()) != '\n' && c != EOF) ;
 					//}
@@ -704,8 +706,8 @@ int main() {
 					printf("%d\n", i) ;
 				}
 			}
-			continue ;
 		}
+		continue ;
 	}
 	return 0 ;
 }
