@@ -22,7 +22,7 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		if (scanf(" %c", &option) != 1 || option < '1' || '7' < option) {
+		if (scanf("%c", &option) != 1 || option < '1' || '7' < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
