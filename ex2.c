@@ -24,7 +24,7 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		int optionInput = scanf(" %d", &option) ;
+		int optionInput = scanf("%d", &option) ;
 		while (option == ' ') {
 			option = getchar() ;
 		}
