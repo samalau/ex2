@@ -8,8 +8,8 @@ Assignment: ex2
 #include <stdio.h>
 
 #define SYMBOLS_INPUT_SIZE 5
-#define MAX_INPUT 262144LL
-#define MAX_SUM 9LL
+#define MAX_INPUT 3000
+#define MAX_SUM 9
 
 int main() {
 	while (1) {
@@ -47,12 +47,12 @@ int main() {
 			// Case 1: Happy Face
 			case 1: {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
-    			long long faceSize = 0 ;
+    			int faceSize = 0 ;
 				// symbols --> face size --> make face
 				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (1) {
 					char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					int valid = 1 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= SYMBOLS_INPUT_SIZE ||
@@ -80,7 +80,7 @@ int main() {
 				printf("Enter face size:\n") ;
 				while (1) {
 					char faceSizeInput[MAX_INPUT + 1] = {0} ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					int valid = 1 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
@@ -90,7 +90,7 @@ int main() {
 						faceSizeInput[ind++] = c ;
 					}
 					faceSizeInput[ind] = '\0' ;
-					long long i = 0 ;
+					int i = 0 ;
 					while (faceSizeInput[i] == '0') {
 						i++ ;
 					}
@@ -101,7 +101,7 @@ int main() {
 						}
 						else {
 							faceSize = 0 ;
-							for (long long k = i ; k < ind ; k++) {
+							for (int k = i ; k < ind ; k++) {
 								faceSize = faceSize * 10 + (faceSizeInput[k] - '0') ;
 							}
 							if (faceSize <= 0) {
@@ -119,7 +119,7 @@ int main() {
 					break ;
 				}
 				// --> make face
-				long long secondEye = faceSize + 1 ;
+				int secondEye = faceSize + 1 ;
 				for (int i = 0 ; i <= secondEye ; i++) {
 					if (i == 0) {
 						putchar(eyes) ;
@@ -129,7 +129,7 @@ int main() {
 						putchar(32) ;
 					}
 				}
-				long long second = (1 + faceSize) / 2 ;
+				int second = (1 + faceSize) / 2 ;
 				for (int i = 0 ; i <= second ; i++) {
 					if (i == second) {
 						printf("%c\n", nose) ;
@@ -137,7 +137,7 @@ int main() {
 						putchar(32) ;
 					}
 				}
-				long long makeMouth = faceSize + 1 ;
+				int makeMouth = faceSize + 1 ;
 				for (int i = 0 ; i <= makeMouth ; i++) {
 					if (i == 0) {
 						putchar('\\') ;
@@ -156,8 +156,8 @@ int main() {
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
-					long long ind = 0 ;
-					long long frontSection = 0, endSection = 0 ;
+					int ind = 0 ;
+					int frontSection = 0, endSection = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							while ((c = getchar()) != '\n' && c != EOF) ;
@@ -174,7 +174,7 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					long long i = 0 ;
+					int i = 0 ;
 					while (input[i] == '0') {
 						i++ ;
 					}
@@ -186,19 +186,19 @@ int main() {
 						continue ;
 					}
 					char *strVal = input ;
-					long long length = 0 ;
+					int length = 0 ;
 					while (strVal[length] != '\0') length++ ;
 					if (length == 0) {
 						frontSection = 0 ;
 						endSection = -1 ;
 					} else if (length >= 1) {
-						long long sectionSize = length - i ;
+						int sectionSize = length - i ;
 						if (length == 1 || sectionSize == 1) {
 							frontSection = 0 ;
 							endSection = 0 ;
 						} else {
-							long long j = 0, k = 0 ;
-							long long chunkSpace = 1 ;
+							int j = 0, k = 0 ;
+							int chunkSpace = 1 ;
 							int value = 0 ;
 							if (sectionSize % 2 != 0) {
 								--sectionSize ;
@@ -222,9 +222,9 @@ int main() {
 								frontSection = value / chunkSpace ;
 							}
 							endSection = value % chunkSpace ;
-							long long *sections[] = { &frontSection, &endSection } ;
+							int *sections[] = { &frontSection, &endSection } ;
 							for (i = 0 ; i < 2 ; i++) {
-								long long *sectionSpecific = sections[i] ;
+								int *sectionSpecific = sections[i] ;
 								while (*sectionSpecific > MAX_SUM) {
 									*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
 								}
@@ -247,7 +247,7 @@ int main() {
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							while ((c = getchar()) != '\n' && c != EOF) ;
@@ -264,15 +264,15 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					long long i = 0 ;
+					int i = 0 ;
 					while (input[i] == '0') {
 						i++ ;
 					}
-					long long k = 0, n = 0 ;
+					int k = 0, n = 0 ;
 					for (k = i ; k < ind ; k++) {
 						n = n * 10 + (input[k] - '0') ;
 					}
-					long long sum = 0 ;
+					int sum = 0 ;
 					for (i = 2 ; i * i <= n ; i++) {
 						if (n % i == 0) {
 							sum += i ;
@@ -306,7 +306,7 @@ int main() {
 					int forward = 1, reverse = 1 ;  
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							while ((c = getchar()) != '\n' && c != EOF) ;
@@ -316,7 +316,7 @@ int main() {
 						input[ind++] = c ;
 					}
 					input[ind] = '\0' ;
-					long long i = 0, k = 0, n = 0 ;
+					int i = 0, k = 0, n = 0 ;
 					if (valid) {
 						while (input[i] == '0') {
 							i++ ;
@@ -336,24 +336,24 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					long long n_copy = n, n_reversed = 0 ;
+					int n_copy = n, n_reversed = 0 ;
 					while (n_copy > 0) {
 						n_reversed = (n_reversed * 10) + (n_copy % 10) ;
 						n_copy /= 10 ;
 					}
-					long long uncheckedValues[] = {n, n_reversed} ;
+					int uncheckedValues[] = {n, n_reversed} ;
 					for (k = 0 ; k < 2 ; k++) {
-						long long n_n = uncheckedValues[k] ;
-						long long d = n_n - 1 ;
+						int n_n = uncheckedValues[k] ;
+						int d = n_n - 1 ;
 						int r = 0 ;
 						while (d % 2 == 0) {
 							d /= 2 ; r++ ;
 						}
-						long long bases[] = {2, 3, 5, 7, 11, 13, 17, 19} ;
+						int bases[] = {2, 3, 5, 7, 11, 13, 17, 19} ;
 						for (i = 0 ; i < 8 && bases[i] < n_n ; i++) {
-							long long b = bases[i] ;
-							long long x = 1;
-							long long d_copy = d ;
+							int b = bases[i] ;
+							int x = 1;
+							int d_copy = d ;
 							while (d_copy) {
 								if (d_copy % 2 == 1) {
 									x = (x * b) % n_n ;
@@ -362,7 +362,7 @@ int main() {
 								d_copy /= 2 ;
 							}
 							if (x != 1 && x != n_n - 1) {
-								long long m = 1 ;
+								int m = 1 ;
 								for (int j = 0 ; j < r - 1 && m ; j++) {
 									x = (x * x) % n_n ;
 									if (x == n_n - 1) {
@@ -396,7 +396,7 @@ int main() {
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							valid = 0 ;
@@ -405,7 +405,7 @@ int main() {
 						input[ind++] = c ;
 					}
 					input[ind] = '\0' ;
-					long long i = 0 ;
+					int i = 0 ;
 					while (input[i] == '0') i++ ;
 					if (!valid || i == ind) {
 						if (c != '\n') {
@@ -414,24 +414,24 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					long long k= 0, n = 0 ;
+					int k= 0, n = 0 ;
 					for (k = i ; k < ind ; k++) {
 						n = n * 10 + (input[k] - '0') ;
 					}
-					printf("Between 1 and %lld only these numbers bring happiness: ", n) ;
+					printf("Between 1 and %d only these numbers bring happiness: ", n) ;
 					for (i = 1 ; i <= n ; i++) {
-						long long whatAreYouFeeling = i ;
+						int whatAreYouFeeling = i ;
 						while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4) {
-							long long sum = 0 ;
+							int sum = 0 ;
 							while (whatAreYouFeeling > 0) {
-								long long dig = (whatAreYouFeeling % 10) ;
+								int dig = (whatAreYouFeeling % 10) ;
 								sum += dig * dig ;
 								whatAreYouFeeling /= 10 ;
 							}
 							whatAreYouFeeling = sum ;
 						}
 						if (whatAreYouFeeling == 1) {
-							printf("%lld ", i) ;
+							printf("%d ", i) ;
 						}
 					}
 					printf("\n") ;
@@ -444,7 +444,7 @@ int main() {
 			case 6: {
 				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
 				char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
-				long long smileNumber, cheerNumber;
+				int smileNumber, cheerNumber;
 				printf("Enter a smile and cheer number:\n") ;
 				
 				while (1) {
@@ -457,7 +457,7 @@ int main() {
 					}
 
 					char identifySmile[7] = {0} ;
-					long long ind = 0 ;
+					int ind = 0 ;
 					while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
 						if (c != 32) {
 							identifySmile[ind++] = c ;
@@ -471,7 +471,7 @@ int main() {
 
 					identifySmile[ind] = '\0' ;
 					
-					for (long long j = 0 ; j < 6; j++) {
+					for (int j = 0 ; j < 6; j++) {
 						if (identifySmile[j] != smileCheck[j]) {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
@@ -545,7 +545,7 @@ int main() {
 					}
 					identifyCheer[ind] = '\0' ;
 
-					for (long long j = 0 ; j < 6; j++) {
+					for (int j = 0 ; j < 6; j++) {
 						if (identifyCheer[j] != cheerCheck[j]) {
 							valid = 0 ;
 							break ;
@@ -602,19 +602,19 @@ int main() {
 						continue ;
 					}
 					
-					long long j = 0 ;
+					int j = 0 ;
 					while (smileNumberIn[j] == '0') j++ ;
 
-					long long k = 0 ;
+					int k = 0 ;
 					while (cheerNumberIn[k] == '0') k++ ;
 					
 					smileNumber = 0 ;
-					for (long long i = j ; smileNumberIn[i] != '\0' ; i++) {
+					for (int i = j ; smileNumberIn[i] != '\0' ; i++) {
 						smileNumber = smileNumber * 10 + (smileNumberIn[i] - '0') ;
 					}
 					
 					cheerNumber = 0;
-					for (long long i = k ; cheerNumberIn[i] != '\0' ; i++) {
+					for (int i = k ; cheerNumberIn[i] != '\0' ; i++) {
 						cheerNumber = cheerNumber * 10 + (cheerNumberIn[i] - '0') ;
 					}
 					
@@ -629,9 +629,9 @@ int main() {
 					break ;
 				}
 				printf("Enter maximum number for the festival:\n") ;
-				long long maximum = 0 ;
+				int maximum = 0 ;
 				while (!maximum) {
-					long long maximumOut = 0 ;
+					int maximumOut = 0 ;
 					while (maximumOut == 0) {
 						c = getchar() ;
 						if (c == '\n') {
@@ -661,7 +661,7 @@ int main() {
 							break ;
 						}
 						ungetc(c, stdin) ;
-						maximumOut = scanf("%lld", &maximum) ;
+						maximumOut = scanf("%d", &maximum) ;
 						while ((c = getchar()) == 32) ;
 						if (maximumOut == 0 || maximum < 1 || c != '\n') {
 							if (c != '\n') {
@@ -673,7 +673,7 @@ int main() {
 						}
 					}
 				}
-				for (long long i = 1 ; i <= maximum ; i++) {
+				for (int i = 1 ; i <= maximum ; i++) {
 					int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
 					if (isSmile && isCheer) {
 						printf("Festival!\n") ;
@@ -682,7 +682,7 @@ int main() {
 					} else if (isCheer) {
 						printf("Cheer!\n") ;
 					} else {
-						printf("%lld\n", i) ;
+						printf("%d\n", i) ;
 					}
 				}
 			}
