@@ -12,7 +12,7 @@ Assignment: ex2
 
 int main() {
 	char option = '0' ;
-	while (option != '7') {
+	while ((option != '7') == 1) {
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
@@ -22,7 +22,8 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		if (scanf("%c", &option) != 1 || option < '1' || '7' < option) {
+		int opt = scanf("%c", &option) ;
+		if (opt != 1 || option < '1' || '7' < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
