@@ -28,7 +28,7 @@ int main() {
 		while (option == ' ') {
 			option = getchar() ;
 		}
-		if (optionInput != 1 || option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
+		if (optionInput != 1 && option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
