@@ -14,6 +14,7 @@ int main() {
 
 	char option = '0' ;
 	while (option != '7') {
+		
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
@@ -451,8 +452,8 @@ int main() {
 					char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
 					int smileNumber, cheerNumber;
 					printf("Enter a smile and cheer number:\n") ;
-					
-					while (1) {
+					valid = 1 ;
+					while (valid != 2) {
 						valid = 1 ;
 						while ((c = getchar()) == ' ') ;
 						if (c == '\n') {
@@ -637,8 +638,10 @@ int main() {
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
+						} else {
+							valid = 2 ;
+							break ;
 						}
-						break ;
 					}
 					printf("Enter maximum number for the festival:\n") ;
 					int maximum = 0 ;
@@ -698,8 +701,10 @@ int main() {
 							printf("%d\n", i) ;
 						}
 					}
+					
 				}
 			}
+			continue ;
 		}
 	}
 	return 0 ;
