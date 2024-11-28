@@ -288,7 +288,7 @@ int main() {
 			}
 
 			// Case 4
-			case 4: {
+			case '4': {
 				printf("Enter a number:\n") ;
 				while (1) {
 					// circle is complete only if both forward, reverse are 1
