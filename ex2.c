@@ -24,11 +24,11 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		option = getchar() ;
+		int optionInput = scanf(" %c", &option) ;
 		while (option == ' ') {
 			option = getchar() ;
 		}
-		if (option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
+		if (optionInput != 1 || option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
@@ -444,267 +444,266 @@ int main() {
 				}
 
 				// Case 6: Festival of Laughter
-				case '6': {
+				// case '6': {
 
-					while ((c = getchar()) != '\n') ;
+				// 	while ((c = getchar()) != '\n') ;
 
-					char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
-					char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
-					int smileNumber, cheerNumber;
-					printf("Enter a smile and cheer number:\n") ;
-					valid = 1 ;
-					while (valid != 2) {
-						valid = 1 ;
-						while ((c = getchar()) == ' ') ;
-						if (c == '\n') {
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 	char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
+				// 	char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
+				// 	int smileNumber, cheerNumber;
+				// 	printf("Enter a smile and cheer number:\n") ;
+				// 	valid = 1 ;
+				// 	while (valid != 2) {
+				// 		valid = 1 ;
+				// 		while ((c = getchar()) == ' ') ;
+				// 		if (c == '\n') {
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 
-						char identifySmile[7] = {0} ;
-						int ind = 0 ;
-						while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
-							if (c != ' ') {
-								identifySmile[ind++] = c ;
-							}
-							c = getchar() ;
-						}
+				// 		char identifySmile[7] = {0} ;
+				// 		int ind = 0 ;
+				// 		while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
+				// 			if (c != ' ') {
+				// 				identifySmile[ind++] = c ;
+				// 			}
+				// 			c = getchar() ;
+				// 		}
 
-						if (c == ':') {
-							identifySmile[ind++] = c ;
-						}
+				// 		if (c == ':') {
+				// 			identifySmile[ind++] = c ;
+				// 		}
 
-						identifySmile[ind] = '\0' ;
+				// 		identifySmile[ind] = '\0' ;
 						
-						for (int j = 0 ; j < 6; j++) {
-							if (identifySmile[j] != smileCheck[j]) {
-								valid = 0 ;
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								printf("Only 2 different positive numbers in the given format"
-										" are allowed for the festival, please try again:\n") ;
-								break ;
-							}
-						}
-						if (!valid) continue ;
-						c = getchar() ;
-						while (c == ' ') {
-							c = getchar() ;
-						}
-						if (c < '0' || '9' < c ) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							valid = 0 ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 		for (int j = 0 ; j < 6; j++) {
+				// 			if (identifySmile[j] != smileCheck[j]) {
+				// 				valid = 0 ;
+				// 				if (c != '\n') {
+				// 					while ((c = getchar()) != '\n' && c != EOF) ;
+				// 				}
+				// 				printf("Only 2 different positive numbers in the given format"
+				// 						" are allowed for the festival, please try again:\n") ;
+				// 				break ;
+				// 			}
+				// 		}
+				// 		if (!valid) continue ;
+				// 		c = getchar() ;
+				// 		while (c == ' ') {
+				// 			c = getchar() ;
+				// 		}
+				// 		if (c < '0' || '9' < c ) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			valid = 0 ;
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 
-						char smileNumberIn[MAX_INPUT + 1] = {0} ;
-						ind = 0 ;
-						while ('0' <= c && c <= '9') {
-							smileNumberIn[ind++] = c ;
-							if (ind >= MAX_INPUT - 1) {
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								valid = 0 ;
-								printf("Only 2 different positive numbers in the given format"
-										" are allowed for the festival, please try again:\n") ;
-								break ;
-							}
-							c = getchar() ;
-						}
-						if (!valid) {
-							continue ;
-						}
-						smileNumberIn[ind] = '\0' ;
+				// 		char smileNumberIn[MAX_INPUT + 1] = {0} ;
+				// 		ind = 0 ;
+				// 		while ('0' <= c && c <= '9') {
+				// 			smileNumberIn[ind++] = c ;
+				// 			if (ind >= MAX_INPUT - 1) {
+				// 				if (c != '\n') {
+				// 					while ((c = getchar()) != '\n' && c != EOF) ;
+				// 				}
+				// 				valid = 0 ;
+				// 				printf("Only 2 different positive numbers in the given format"
+				// 						" are allowed for the festival, please try again:\n") ;
+				// 				break ;
+				// 			}
+				// 			c = getchar() ;
+				// 		}
+				// 		if (!valid) {
+				// 			continue ;
+				// 		}
+				// 		smileNumberIn[ind] = '\0' ;
 
-						while (c == ' ' || c == ',') {
-							c = getchar() ;
-						}
+				// 		while (c == ' ' || c == ',') {
+				// 			c = getchar() ;
+				// 		}
 
-						char identifyCheer[7] = {0} ;
-						ind = 0 ;
-						while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
-							if (ind >= 7) {
-								valid = 0;
-								break;
-							}
-							if (c != ' ') {
-								identifyCheer[ind++] = c ;
-							}
-							c = getchar() ;
-						}
+				// 		char identifyCheer[7] = {0} ;
+				// 		ind = 0 ;
+				// 		while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
+				// 			if (ind >= 7) {
+				// 				valid = 0;
+				// 				break;
+				// 			}
+				// 			if (c != ' ') {
+				// 				identifyCheer[ind++] = c ;
+				// 			}
+				// 			c = getchar() ;
+				// 		}
 
-						if (!valid) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							valid = 0 ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 		if (!valid) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			valid = 0 ;
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 
-						if (c == ':') {
-							identifyCheer[ind++] = c ;
-						}
-						identifyCheer[ind] = '\0' ;
+				// 		if (c == ':') {
+				// 			identifyCheer[ind++] = c ;
+				// 		}
+				// 		identifyCheer[ind] = '\0' ;
 
-						for (int j = 0 ; j < 6; j++) {
-							if (identifyCheer[j] != cheerCheck[j]) {
-								valid = 0 ;
-								break ;
-							}
-						}
-						if (!valid) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 		for (int j = 0 ; j < 6; j++) {
+				// 			if (identifyCheer[j] != cheerCheck[j]) {
+				// 				valid = 0 ;
+				// 				break ;
+				// 			}
+				// 		}
+				// 		if (!valid) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 
-						while ((c = getchar()) == ' ') ;
+				// 		while ((c = getchar()) == ' ') ;
 
-						if (c < '0' || '9' < c ) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							valid = 0 ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 		if (c < '0' || '9' < c ) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			valid = 0 ;
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 
-						char cheerNumberIn[MAX_INPUT + 1] = {0} ;
-						ind = 0 ;
-						while ('0' <= c && c <= '9') {
-							cheerNumberIn[ind++] = c ;
-							if (ind >= MAX_INPUT - 1) {
-								valid = 0 ;
-								break ;
-							}
-							c = getchar() ;
-						}
-						if (!valid) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
-						cheerNumberIn[ind] = '\0' ;
+				// 		char cheerNumberIn[MAX_INPUT + 1] = {0} ;
+				// 		ind = 0 ;
+				// 		while ('0' <= c && c <= '9') {
+				// 			cheerNumberIn[ind++] = c ;
+				// 			if (ind >= MAX_INPUT - 1) {
+				// 				valid = 0 ;
+				// 				break ;
+				// 			}
+				// 			c = getchar() ;
+				// 		}
+				// 		if (!valid) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
+				// 		cheerNumberIn[ind] = '\0' ;
 
-						while (c == ' ') {
-							c = getchar() ;
-						}
+				// 		while (c == ' ') {
+				// 			c = getchar() ;
+				// 		}
 						
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-							valid = 0 ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
+				// 		if (c != '\n') {
+				// 			while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			valid = 0 ;
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		}
 						
-						int j = 0 ;
-						while (smileNumberIn[j] == '0') j++ ;
+				// 		int j = 0 ;
+				// 		while (smileNumberIn[j] == '0') j++ ;
 
-						int k = 0 ;
-						while (cheerNumberIn[k] == '0') k++ ;
+				// 		int k = 0 ;
+				// 		while (cheerNumberIn[k] == '0') k++ ;
 						
-						smileNumber = 0 ;
-						for (int i = j ; smileNumberIn[i] != '\0' ; i++) {
-							smileNumber = smileNumber * 10 + (smileNumberIn[i] - '0') ;
-						}
+				// 		smileNumber = 0 ;
+				// 		for (int i = j ; smileNumberIn[i] != '\0' ; i++) {
+				// 			smileNumber = smileNumber * 10 + (smileNumberIn[i] - '0') ;
+				// 		}
 						
-						cheerNumber = 0;
-						for (int i = k ; cheerNumberIn[i] != '\0' ; i++) {
-							cheerNumber = cheerNumber * 10 + (cheerNumberIn[i] - '0') ;
-						}
+				// 		cheerNumber = 0;
+				// 		for (int i = k ; cheerNumberIn[i] != '\0' ; i++) {
+				// 			cheerNumber = cheerNumber * 10 + (cheerNumberIn[i] - '0') ;
+				// 		}
 						
-						if (smileNumber <= 0 || cheerNumber <= 0 || smileNumber == cheerNumber) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							valid = 0 ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						} else {
-							valid = 2 ;
-							break ;
-						}
-					}
-					printf("Enter maximum number for the festival:\n") ;
-					int maximum = 0 ;
-					while (!maximum) {
-						int maximumOut = 0 ;
-						while (maximumOut == 0) {
-							c = getchar() ;
-							if (c == '\n') {
-								printf("Only positive maximum number is allowed, please try again:\n") ;
-								maximum = 0 ;
-								break ;
-							} else if (c == ' ') {
-								c = getchar() ;
-								if (c < ' ' || '9' < c) {
-									if (c != '\n') {
-										while ((c = getchar()) != '\n' && c != EOF) ;
-									}
-									valid = 0 ;
-									printf("Only positive maximum number is allowed, please try again:\n") ;
-									maximum = 0 ;
-									break ;
-								}
-							}
-							while (c == ' ') {
-								c = getchar() ;
-							}
-							if (c < ' ' || '9' < c) {
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								printf("Only positive maximum number is allowed, please try again:\n") ;
-								maximum = 0 ;
-								break ;
-							}
-							ungetc(c, stdin) ;
-							maximumOut = scanf("%d", &maximum) ;
-							while ((c = getchar()) == ' ') ;
-							if (maximumOut == 0 || maximum < 1 || c != '\n') {
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								printf("Only positive maximum number is allowed, please try again:\n") ;
-								maximum = 0 ;
-								break ;
-							}
-						}
-					}
-					for (int i = 1 ; i <= maximum ; i++) {
-						int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
-						if (isSmile && isCheer) {
-							printf("Festival!\n") ;
-						} else if (isSmile) {
-							printf("Smile!\n") ;
-						} else if (isCheer) {
-							printf("Cheer!\n") ;
-						} else {
-							printf("%d\n", i) ;
-						}
-					}
-					
-				}
+				// 		if (smileNumber <= 0 || cheerNumber <= 0 || smileNumber == cheerNumber) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			valid = 0 ;
+				// 			printf("Only 2 different positive numbers in the given format"
+				// 					" are allowed for the festival, please try again:\n") ;
+				// 			continue ;
+				// 		} else {
+				// 			valid = 2 ;
+				// 			break ;
+				// 		}
+				// 	}
+				// 	printf("Enter maximum number for the festival:\n") ;
+				// 	int maximum = 0 ;
+				// 	while (!maximum) {
+				// 		int maximumOut = 0 ;
+				// 		while (maximumOut == 0) {
+				// 			c = getchar() ;
+				// 			if (c == '\n') {
+				// 				printf("Only positive maximum number is allowed, please try again:\n") ;
+				// 				maximum = 0 ;
+				// 				break ;
+				// 			} else if (c == ' ') {
+				// 				c = getchar() ;
+				// 				if (c < ' ' || '9' < c) {
+				// 					if (c != '\n') {
+				// 						while ((c = getchar()) != '\n' && c != EOF) ;
+				// 					}
+				// 					valid = 0 ;
+				// 					printf("Only positive maximum number is allowed, please try again:\n") ;
+				// 					maximum = 0 ;
+				// 					break ;
+				// 				}
+				// 			}
+				// 			while (c == ' ') {
+				// 				c = getchar() ;
+				// 			}
+				// 			if (c < ' ' || '9' < c) {
+				// 				if (c != '\n') {
+				// 					while ((c = getchar()) != '\n' && c != EOF) ;
+				// 				}
+				// 				printf("Only positive maximum number is allowed, please try again:\n") ;
+				// 				maximum = 0 ;
+				// 				break ;
+				// 			}
+				// 			ungetc(c, stdin) ;
+				// 			maximumOut = scanf("%d", &maximum) ;
+				// 			while ((c = getchar()) == ' ') ;
+				// 			if (maximumOut == 0 || maximum < 1 || c != '\n') {
+				// 				if (c != '\n') {
+				// 					while ((c = getchar()) != '\n' && c != EOF) ;
+				// 				}
+				// 				printf("Only positive maximum number is allowed, please try again:\n") ;
+				// 				maximum = 0 ;
+				// 				break ;
+				// 			}
+				// 		}
+				// 	}
+				// 	for (int i = 1 ; i <= maximum ; i++) {
+				// 		int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
+				// 		if (isSmile && isCheer) {
+				// 			printf("Festival!\n") ;
+				// 		} else if (isSmile) {
+				// 			printf("Smile!\n") ;
+				// 		} else if (isCheer) {
+				// 			printf("Cheer!\n") ;
+				// 		} else {
+				// 			printf("%d\n", i) ;
+				// 		}
+				// 	}
+				// 	break ;
+				// }
 			}
-			continue ;
 		}
 	}
 	return 0 ;
