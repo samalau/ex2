@@ -12,7 +12,7 @@ Assignment: ex2
 
 int main() {
 	char option = '0' ;
-	while ((option != '7') == 1) {
+	while (option != '7') {
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
