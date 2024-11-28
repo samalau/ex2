@@ -65,7 +65,9 @@ int main() {
 					}
 					symbolsInput[ind] = '\0' ;					
 					if (!valid || ind != SYMBOLS_INPUT_SIZE) {
-						if (c != '\n') { while ((c = getchar()) != '\n' && c != EOF) ; } ;
+						if (c != '\n') {
+							while ((c = getchar()) != '\n' && c != EOF) ;
+						}
 						printf("Please try again:\n") ;
 						continue ;
 					}
@@ -165,11 +167,18 @@ int main() {
 						input[ind++] = c ;
 					}
 					input[ind] = '\0' ;
+					if (!valid) {
+						if (c != '\n') {
+							while ((c = getchar()) != '\n' && c != EOF) ;
+						}
+						printf("Only positive number is allowed, please try again:\n") ;
+						continue ;
+					}
 					long long i = 0 ;
 					while (input[i] == '0') {
 						i++ ;
 					}
-					if (!valid || i == ind) {
+					if (i == ind) {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
@@ -248,6 +257,13 @@ int main() {
 						input[ind++] = c ;
 					}
 					input[ind] = '\0' ;
+					if (!valid) {
+						if (c != '\n') {
+							while ((c = getchar()) != '\n' && c != EOF) ;
+						}
+						printf("Only positive number is allowed, please try again:\n") ;
+						continue ;
+					}
 					long long i = 0 ;
 					while (input[i] == '0') {
 						i++ ;
@@ -265,7 +281,7 @@ int main() {
 							}
 						}
 					}
-					if (!valid || n < 1 || n > MAX_INPUT) {
+					if (n < 1 || n > MAX_INPUT) {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
@@ -390,9 +406,7 @@ int main() {
 					}
 					input[ind] = '\0' ;
 					long long i = 0 ;
-					while (input[i] == '0') {
-						i++ ;
-					}
+					while (input[i] == '0') i++ ;
 					if (!valid || i == ind) {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
@@ -660,14 +674,15 @@ int main() {
 					}
 				}
 				for (long long i = 1 ; i <= maximum ; i++) {
-					if ((i % smileNumber) != 0 && (i % cheerNumber) != 0) {
-						printf("%lld\n", i) ;
-					} else if ((i % smileNumber) == 0 && (i % cheerNumber) != 0) {
-						printf("Smile!\n") ;
-					} else if ((i % smileNumber) != 0 && (i % cheerNumber) == 0) {
-						printf("Cheer!\n") ;
-					} else if ((i % smileNumber) == 0 && (i % cheerNumber) == 0) {
+					int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
+					if (isSmile && isCheer) {
 						printf("Festival!\n") ;
+					} else if (isSmile) {
+						printf("Smile!\n") ;
+					} else if (isCheer) {
+						printf("Cheer!\n") ;
+					} else {
+						printf("%lld\n", i) ;
 					}
 				}
 			}
