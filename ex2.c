@@ -176,6 +176,7 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
+						valid = 0 ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
@@ -241,7 +242,7 @@ int main() {
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
-					int valid = 1 ;
+					valid = 1 ;
 					int ind = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
@@ -491,6 +492,7 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
+						valid = 0 ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
@@ -504,6 +506,7 @@ int main() {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
+							valid = 0 ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							break ;
@@ -567,6 +570,7 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
+						valid = 0 ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
@@ -598,6 +602,7 @@ int main() {
 					
 					if (c != '\n') {
 						while ((c = getchar()) != '\n' && c != EOF) ;
+						valid = 0 ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
@@ -623,6 +628,7 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
+						valid = 0 ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
@@ -636,6 +642,7 @@ int main() {
 					while (maximumOut == 0) {
 						c = getchar() ;
 						if (c == '\n') {
+							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
@@ -645,6 +652,7 @@ int main() {
 								if (c != '\n') {
 									while ((c = getchar()) != '\n' && c != EOF) ;
 								}
+								valid = 0 ;
 								printf("Only positive maximum number is allowed, please try again:\n") ;
 								maximum = 0 ;
 								break ;
@@ -657,6 +665,7 @@ int main() {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
+							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
@@ -668,6 +677,7 @@ int main() {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
+							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
