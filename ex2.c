@@ -37,6 +37,7 @@ int main() {
 
 			// Case 1: Happy Face
 			case '1': {
+				while ((c = getchar()) != '\n') ;
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
     			int faceSize = 0 ;
 				// symbols --> face size --> make face
@@ -142,6 +143,7 @@ int main() {
 
 			// Case 2
 			case '2': {
+				while ((c = getchar()) != '\n') ;
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -233,6 +235,7 @@ int main() {
 
 			// Case 3
 			case '3': {
+				while ((c = getchar()) != '\n') ;
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -290,6 +293,7 @@ int main() {
 
 			// Case 4
 			case '4': {
+				while ((c = getchar()) != '\n') ;
 				printf("Enter a number:\n") ;
 				while (1) {
 					// circle is complete only if both forward, reverse are 1
@@ -382,6 +386,7 @@ int main() {
 
 			// Case 5: Happy numbers
 			case '5': {
+				while ((c = getchar()) != '\n') ;
 				printf("Enter a number:\n") ;
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
@@ -432,6 +437,9 @@ int main() {
 
 			// Case 6: Festival of Laughter
 			case '6': {
+	
+				while ((c = getchar()) != '\n') ;
+
 				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
 				char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
 				int smileNumber, cheerNumber;
