@@ -11,7 +11,8 @@ Assignment: ex2
 #define MAX_SUM 9
 
 int main() {
-	while (1) {
+	int option = 0 ;
+	while ((option != 7) == 1) {
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
@@ -687,6 +688,7 @@ int main() {
 			}
 			break ;
 		}
+		keepGoing = 1 ;
 	}
 	return 0 ;
 }
