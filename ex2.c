@@ -31,7 +31,6 @@ int main() {
 			continue ;
 		}
 		ungetc(c, stdin) ;
-		int option ;
 		if (scanf("%1d%c", &option, &c) != 2 || c != '\n'|| option < 1 || 7 < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
