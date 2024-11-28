@@ -22,16 +22,7 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		c = getchar() ;
-		if (c == '\n' || c == ' ' || c == '\t' || c < '1' || '7' < c) {
-			if (c != '\n') {
-				while ((c = getchar()) != '\n' && c != EOF) ;
-			}
-			printf("This option is not available, please try again.\n") ;
-			continue ;
-		}
-		ungetc(c, stdin) ;
-		if (scanf("%1d%c", &option, &c) != 2 || c != '\n'|| option < 1 || 7 < option) {
+		if (scanf("%1d", &option) != 1 || option < 1 || 7 < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
@@ -67,7 +58,6 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
-						printf("Please try again:\n") ;
 						continue ;
 					}
 					eyes = symbolsInput[0] ;
