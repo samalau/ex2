@@ -61,9 +61,9 @@ int main() {
 				}
 				symbolsInput[ind] = '\0' ;					
 				if (!valid || ind != SYMBOLS_INPUT_SIZE) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					// }
 					continue ;
 				}
 				eyes = symbolsInput[0] ;
@@ -105,9 +105,9 @@ int main() {
 					}
 				}
 				if (!valid || i == ind) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					//}
 					printf("The face's size must be an odd and positive number, please try again:\n") ;
 					continue ;
 				}
@@ -165,9 +165,9 @@ int main() {
 				}
 				input[ind] = '\0' ;
 				if (!valid) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					//if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					//}
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
 				}
@@ -176,9 +176,9 @@ int main() {
 					i++ ;
 				}
 				if (i == ind) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					//}
 					valid = 0 ;
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
@@ -258,9 +258,9 @@ int main() {
 				}
 				input[ind] = '\0' ;
 				if (!valid) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					//if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					//}
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
 				}
@@ -282,9 +282,9 @@ int main() {
 					}
 				}
 				if (n < 1 || n > MAX_INPUT) {
-					if (c != '\n') {
+					// if (c != '\n') {
 						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// }
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
 				}
@@ -332,9 +332,9 @@ int main() {
 					}
 				}
 				if (!valid || n < 1) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					// }
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
 				}
@@ -412,9 +412,9 @@ int main() {
 				int i = 0 ;
 				while (input[i] == '0') i++ ;
 				if (!valid || i == ind) {
-					if (c != '\n') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
-					}
+					// if (c != '\n') {
+					while ((c = getchar()) != '\n' && c != EOF) ;
+					// }
 					printf("Only positive number is allowed, please try again:\n") ;
 					continue ;
 				}
@@ -452,17 +452,17 @@ int main() {
 
 			char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'} ;
 			char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
-			int smileNumber, cheerNumber;
+			int smileNumber = 0, cheerNumber = 0;
 			printf("Enter a smile and cheer number:\n") ;
 			valid = 1 ;
 			while (valid != 2) {
 				valid = 1 ;
 				while ((c = getchar()) == ' ') ;
-				if (c == '\n') {
-					printf("Only 2 different positive numbers in the given format"
-							" are allowed for the festival, please try again:\n") ;
-					continue ;
-				}
+				// if (c == '\n') {
+				// 	printf("Only 2 different positive numbers in the given format"
+				// 			" are allowed for the festival, please try again:\n") ;
+				// 	continue ;
+				// }
 
 				char identifySmile[7] = {0} ;
 				int ind = 0 ;
@@ -667,29 +667,30 @@ int main() {
 							break ;
 						}
 					}
-					while (c == ' ') {
-						c = getchar() ;
-					}
+					// while (c == ' ') {
+					// 	c = getchar() ;
+					// }
 					if (c < ' ' || '9' < c) {
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						//if (c != '\n') {
+						while ((c = getchar()) != '\n' && c != EOF) ;
+						// }
 						printf("Only positive maximum number is allowed, please try again:\n") ;
 						maximum = 0 ;
 						break ;
 					}
-					ungetc(c, stdin) ;
-					maximumOut = scanf("%d", &maximum) ;
+					// ungetc(c, stdin) ;
+					maximumOut = scanf(" %d", &maximum) ;
 					while ((c = getchar()) == ' ') ;
 					if (maximumOut == 0 || maximum < 1 || c != '\n') {
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						// if (c != '\n') {
+						while ((c = getchar()) != '\n' && c != EOF) ;
+						// }
 						printf("Only positive maximum number is allowed, please try again:\n") ;
 						maximum = 0 ;
 						break ;
 					}
 				}
+				break ;
 			}
 			for (int i = 1 ; i <= maximum ; i++) {
 				int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
