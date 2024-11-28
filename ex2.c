@@ -23,8 +23,11 @@ int main() {
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
 		char c ;
-		int opt = scanf(" %c", &option) ;
-		if (opt != 1 || option < '1' || '7' < option) {
+		option = getchar() ;
+		while (option == 32) {
+			option = getchar() ;
+		}
+		if (option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
 			continue ;
@@ -539,6 +542,7 @@ int main() {
 						if (c != '\n') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
 						}
+						valid = 0 ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
@@ -642,7 +646,6 @@ int main() {
 					while (maximumOut == 0) {
 						c = getchar() ;
 						if (c == '\n') {
-							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
@@ -665,7 +668,6 @@ int main() {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
-							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
@@ -677,7 +679,6 @@ int main() {
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
-							valid = 0 ;
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							maximum = 0 ;
 							break ;
