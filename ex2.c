@@ -688,7 +688,6 @@ int main() {
 			}
 			break ;
 		}
-		keepGoing = 1 ;
 	}
 	return 0 ;
 }
