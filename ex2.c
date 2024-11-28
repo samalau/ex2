@@ -473,6 +473,7 @@ int main() {
 					
 					for (int j = 0 ; j < 6; j++) {
 						if (identifySmile[j] != smileCheck[j]) {
+							valid = 0 ;
 							if (c != '\n') {
 								while ((c = getchar()) != '\n' && c != EOF) ;
 							}
