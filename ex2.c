@@ -21,7 +21,6 @@ int main() {
 				"\n\t5. Happy Numbers"
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
-		int option ;
 		char c ;
 		c = getchar() ;
 		if (c == '\n' || c == ' ' || c == '\t' || c < '1' || '7' < c) {
@@ -32,6 +31,7 @@ int main() {
 			continue ;
 		}
 		ungetc(c, stdin) ;
+		int option ;
 		if (scanf("%1d%c", &option, &c) != 2 || c != '\n'|| option < 1 || 7 < option) {
 			while ((c = getchar()) != '\n' && c != EOF) ;
 			printf("This option is not available, please try again.\n") ;
@@ -688,6 +688,7 @@ int main() {
 			}
 			break ;
 		}
+		break ;
 	}
 	return 0 ;
 }
