@@ -154,7 +154,6 @@ int main() {
 				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
-					int odd ;
 					long long ind = 0 ;
 					long long frontSection = 0, endSection = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
