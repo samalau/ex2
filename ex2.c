@@ -33,9 +33,9 @@ int main() {
 			printf("Thank you for your journey through Numeria!\n") ;
 			break ;
 		}
-
+		int valid = 1 ;
 		switch (option) {
-			int valid = 1 ;
+			
 			// Case 1: Happy Face
 			case '1': {
 				while ((c = getchar()) != '\n') ;
