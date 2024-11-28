@@ -42,8 +42,6 @@ int main() {
 			break ;
 		}
 
-		//////////////////////////////////////////////////////////
-
 		switch (option) {
 
 			// Case 1: Happy Face
@@ -289,7 +287,8 @@ int main() {
 			case 4: {
 				printf("Enter a number:\n") ;
 				while (1) {
-					int forward = 1, reverse = 1 ;  // circle is complete only if both forward, reverse are 1 ;
+					// circle is complete only if both forward, reverse are 1
+					int forward = 1, reverse = 1 ;  
 					char input[MAX_INPUT + 1] = {0} ;
 					int valid = 1 ;
 					long long ind = 0 ;
