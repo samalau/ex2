@@ -7,13 +7,13 @@ Assignment: ex2
 #include <stdio.h>
 
 #define SYMBOLS_INPUT_SIZE 5
-#define MAX_INPUT 3000
+#define MAX_INPUT 2048
 #define MAX_SUM 9
 
 int main() {
 
 	char option = '0' ;
-	while ((option != '7') == 1) {
+	while (option != '7') {
 		printf("Choose an option:"
 				"\n\t1. Happy Face"
 				"\n\t2. Balanced Number"
@@ -24,7 +24,7 @@ int main() {
 				"\n\t7. Exit\n") ;
 		char c ;
 		option = getchar() ;
-		while (option == 32) {
+		while (option == ' ') {
 			option = getchar() ;
 		}
 		if (option != '1' && option != '2' && option != '3' && option != '4' && option != '5' && option != '6' && option != '7') {
@@ -37,7 +37,6 @@ int main() {
 			printf("Thank you for your journey through Numeria!\n") ;
 			break ;
 		} else {
-		
 		
 			switch (option) {
 				
@@ -55,7 +54,7 @@ int main() {
 						valid = 1 ;
 						while ((c = getchar()) != '\n' && c != EOF) {
 							if (ind >= SYMBOLS_INPUT_SIZE ||
-							(c != 32 && (ind == 1 || ind == 3)) ||
+							(c != ' ' && (ind == 1 || ind == 3)) ||
 							(c < 33 && (ind != 1 && ind != 3))) {
 								valid = 0 ;
 								break ;
@@ -124,7 +123,7 @@ int main() {
 						} else if (i == secondEye) {
 							printf("%c\n", eyes) ;
 						} else {
-							putchar(32) ;
+							putchar(' ') ;
 						}
 					}
 					int second = (1 + faceSize) / 2 ;
@@ -132,7 +131,7 @@ int main() {
 						if (i == second) {
 							printf("%c\n", nose) ;
 						} else {
-							putchar(32) ;
+							putchar(' ') ;
 						}
 					}
 					int makeMouth = faceSize + 1 ;
@@ -455,7 +454,7 @@ int main() {
 					
 					while (1) {
 						valid = 1 ;
-						while ((c = getchar()) == 32) ;
+						while ((c = getchar()) == ' ') ;
 						if (c == '\n') {
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
@@ -465,7 +464,7 @@ int main() {
 						char identifySmile[7] = {0} ;
 						int ind = 0 ;
 						while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
-							if (c != 32) {
+							if (c != ' ') {
 								identifySmile[ind++] = c ;
 							}
 							c = getchar() ;
@@ -490,7 +489,7 @@ int main() {
 						}
 						if (!valid) continue ;
 						c = getchar() ;
-						while (c == 32) {
+						while (c == ' ') {
 							c = getchar() ;
 						}
 						if (c < '0' || '9' < c ) {
@@ -523,7 +522,7 @@ int main() {
 						}
 						smileNumberIn[ind] = '\0' ;
 
-						while (c == 32 || c == ',') {
+						while (c == ' ' || c == ',') {
 							c = getchar() ;
 						}
 
@@ -534,7 +533,7 @@ int main() {
 								valid = 0;
 								break;
 							}
-							if (c != 32) {
+							if (c != ' ') {
 								identifyCheer[ind++] = c ;
 							}
 							c = getchar() ;
@@ -570,7 +569,7 @@ int main() {
 							continue ;
 						}
 
-						while ((c = getchar()) == 32) ;
+						while ((c = getchar()) == ' ') ;
 
 						if (c < '0' || '9' < c ) {
 							if (c != '\n') {
@@ -602,7 +601,7 @@ int main() {
 						}
 						cheerNumberIn[ind] = '\0' ;
 
-						while (c == 32) {
+						while (c == ' ') {
 							c = getchar() ;
 						}
 						
@@ -651,9 +650,9 @@ int main() {
 								printf("Only positive maximum number is allowed, please try again:\n") ;
 								maximum = 0 ;
 								break ;
-							} else if (c == 32) {
+							} else if (c == ' ') {
 								c = getchar() ;
-								if (c < 32 || '9' < c) {
+								if (c < ' ' || '9' < c) {
 									if (c != '\n') {
 										while ((c = getchar()) != '\n' && c != EOF) ;
 									}
@@ -663,10 +662,10 @@ int main() {
 									break ;
 								}
 							}
-							while (c == 32) {
+							while (c == ' ') {
 								c = getchar() ;
 							}
-							if (c < 32 || '9' < c) {
+							if (c < ' ' || '9' < c) {
 								if (c != '\n') {
 									while ((c = getchar()) != '\n' && c != EOF) ;
 								}
@@ -676,7 +675,7 @@ int main() {
 							}
 							ungetc(c, stdin) ;
 							maximumOut = scanf("%d", &maximum) ;
-							while ((c = getchar()) == 32) ;
+							while ((c = getchar()) == ' ') ;
 							if (maximumOut == 0 || maximum < 1 || c != '\n') {
 								if (c != '\n') {
 									while ((c = getchar()) != '\n' && c != EOF) ;
