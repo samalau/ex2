@@ -24,7 +24,7 @@ int main() {
 				"\n\t5. Happy Numbers"
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
-		int optionInput = scanf("%d", &option) ;
+		int optionInput = scanf(" %d", &option) ;
 		c = getchar() ;
 		if (c != '\n') {
 			while ((c = getchar()) != '\n' && c != EOF) ;
@@ -50,7 +50,6 @@ int main() {
 		
 		// Case 1: Happy Face
 		while (option == 1) {
-			// case 1: {
 			char eyes = '\0', nose = '\0', mouth = '\0' ;
 			int faceSize = 0 ;
 			// symbols --> face size --> make face
