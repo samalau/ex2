@@ -53,7 +53,6 @@ int main() {
 			// case 1: {
 			char eyes = '\0', nose = '\0', mouth = '\0' ;
 			int faceSize = 0 ;
-			int valid = 1 ;
 			// symbols --> face size --> make face
 			printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 			while (eyes == '\0' && nose == '\0' && mouth == '\0') {
