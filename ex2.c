@@ -45,18 +45,15 @@ int main() {
 			printf("This option is not available, please try again.\n") ;
 			continue ;
 		}
-		
-		
-		
-		int valid = 1 ;
+
 		// switch (option) {
 		
-			// Case 1: Happy Face
+		// Case 1: Happy Face
 		while (option == 1) {
 			// case 1: {
 			char eyes = '\0', nose = '\0', mouth = '\0' ;
 			int faceSize = 0 ;
-			valid = 1 ;
+			int valid = 1 ;
 			// symbols --> face size --> make face
 			printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 			while (eyes == '\0' && nose == '\0' && mouth == '\0') {
@@ -405,6 +402,7 @@ int main() {
 
 		// Case 5: Happy numbers
 		while (option == 5) {
+			int valid = 1 ;
 			printf("Enter a number:\n") ;
 			while (1) {
 				char input[MAX_INPUT + 1] = {0} ;
@@ -457,10 +455,7 @@ int main() {
 		while (option == 6) {
 			printf("Enter a smile and cheer number:\n") ;
 			char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'},
-				cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'},
-				identifySmile[7] = {0}, smileNumberIn[MAX_INPUT + 1] = {0},
-				identifyCheer[7] = {0}, cheerNumberIn[MAX_INPUT + 1] = {0},
-				maximumInput[MAX_INPUT + 1] = {0} ;
+				cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
 			int ind = 0,
 				smileNumber = 0,
 				cheerNumber = 0,
