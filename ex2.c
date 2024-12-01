@@ -337,7 +337,6 @@ int main() {
 									base = (base * base) % current;
 									d_copy /= 2;
 								}
-
 								if (x != 1 && x != current - 1) {
 									int composite = 1;
 									for (int j = 0; j < r - 1 && composite; j++) {
@@ -396,7 +395,7 @@ int main() {
 						}
 						printf("Between 1 and %d only these numbers bring happiness: ", n) ;
 						for (i = 1 ; i <= n ; i++) {
-							int seen[MAX_INPUT] = {0}, idx = 0;
+							int seen[MAX_INPUT] = {0} ;
 							int whatAreYouFeeling = i ;
 							while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4 && !seen[whatAreYouFeeling]) {
 								seen[whatAreYouFeeling] = 1;
