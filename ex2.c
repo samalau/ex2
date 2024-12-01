@@ -56,15 +56,13 @@ int main() {
 						char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
 						int ind = 0 ;
 						while ((c = getchar()) != '\n' && c != EOF) {
-							if (ind >= SYMBOLS_INPUT_SIZE ||
-							(c != ' ' && (ind == 1 || ind == 3)) ||
-							(c < 33 && (ind != 1 && ind != 3))) {
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								break ;
+							if (ind < SYMBOLS_INPUT_SIZE && ((ind % 2 == 0 && c >= 33) || (ind % 2 == 1 && c == ' '))) {
+								symbolsInput[ind++] = c;
+							} else {
+								ind = 0;
+								while ((c = getchar()) != '\n' && c != EOF);
+								break;
 							}
-							symbolsInput[ind++] = c ;
 						}
 						symbolsInput[ind] = '\0' ;					
 						eyes = symbolsInput[0] ;
@@ -185,49 +183,27 @@ int main() {
 							printf("Only positive number is allowed, please try again:\n") ;
 							continue ;
 						}
-						char *strVal = input ;
-						int length = 0 ;
-						while (strVal[length] != '\0') length++ ;
-						if (length == 0) {
-							frontSection = 0 ;
-							endSection = -1 ;
-						} else if (length >= 1) {
-							int sectionSize = length - i ;
-							if (length == 1 || sectionSize == 1) {
-								frontSection = 0 ;
-								endSection = 0 ;
-							} else {
-								int j = 0, k = 0 ;
-								int chunkSpace = 1 ;
-								int value = 0 ;
-								if (sectionSize % 2 != 0) {
-									--sectionSize ;
-									sectionSize /= 2 ;
-									for (j = 0 ; j < sectionSize ; j++) {
-										chunkSpace *= 10 ;
-									}
-									for (k = i ; k < ind ; k++) {
-										value = value * 10 + (input[k] - '0') ;
-									}
-									frontSection = value / chunkSpace ;
-									frontSection /= 10 ;
-								} else {
-									sectionSize /= 2 ;
-									for (j = 0 ; j < sectionSize ; j++) {
-										chunkSpace *= 10 ;
-									}
-									for (k = i ; k < ind ; k++) {
-										value = value * 10 + (input[k] - '0') ;
-									}
-									frontSection = value / chunkSpace ;
-								}
-								endSection = value % chunkSpace ;
-								int *sections[] = { &frontSection, &endSection } ;
-								for (i = 0 ; i < 2 ; i++) {
-									int *sectionSpecific = sections[i] ;
-									while (*sectionSpecific > MAX_SUM) {
-										*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
-									}
+						int length = ind - i; // Exclude leading zeros
+						if (length == 1) {
+							frontSection = 0;
+							endSection = 0;
+						} else {
+							int value = 0, sectionSize = length / 2;
+							for (int k = i; k < ind; k++) {
+								value = value * 10 + (input[k] - '0');
+							}
+							int divider = 1;
+							for (int j = 0; j < sectionSize; j++) {
+								divider *= 10;
+							}
+							frontSection = value / divider;
+							endSection = value % divider;
+
+							int *sections[] = { &frontSection, &endSection } ;
+							for (i = 0 ; i < 2 ; i++) {
+								int *sectionSpecific = sections[i] ;
+								while (*sectionSpecific > MAX_SUM) {
+									*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
 								}
 							}
 						}
@@ -346,43 +322,16 @@ int main() {
 							n_reversed = (n_reversed * 10) + (n_copy % 10) ;
 							n_copy /= 10 ;
 						}
-						int uncheckedValues[] = {n, n_reversed} ;
-						for (k = 0 ; k < 2 ; k++) {
-							int n_n = uncheckedValues[k] ;
-							int d = n_n - 1 ;
-							int r = 0 ;
-							while (d % 2 == 0) {
-								d /= 2 ; r++ ;
-							}
-							int bases[] = {2, 3, 5, 7, 11, 13, 17, 19} ;
-							for (i = 0 ; i < 8 && bases[i] < n_n ; i++) {
-								int b = bases[i] ;
-								int x = 1;
-								int d_copy = d ;
-								while (d_copy) {
-									if (d_copy % 2 == 1) {
-										x = (x * b) % n_n ;
-									}
-									b = (b * b) % n_n ;
-									d_copy /= 2 ;
+						int bases[] = {2, 3, 5, 7, 11, 13, 17, 19} ;
+						int n_values[] = {n, n_reversed};
+						for (int v = 0; v < 2; v++) {
+							int current = n_values[v], d = current - 1, r = 0;
+							while (d % 2 == 0) { d /= 2; r++; }
+							for (int i = 0; i < 8 && bases[i] < current; i++) {
+								if (!isPotentialPrime(current, bases[i], d, r)) {
+									forward = reverse = 0; 
+									break;
 								}
-								if (x != 1 && x != n_n - 1) {
-									int m = 1 ;
-									for (int j = 0 ; j < r - 1 && m ; j++) {
-										x = (x * x) % n_n ;
-										if (x == n_n - 1) {
-											m = 0 ;
-											break ;
-										}
-									}
-									if (m) {
-										forward = reverse = 0 ;
-										break ;
-									}
-								}
-							}
-							if (!forward || !reverse) {
-								break ;
 							}
 						}
 						if (forward && reverse) {
@@ -426,13 +375,15 @@ int main() {
 						}
 						printf("Between 1 and %d only these numbers bring happiness: ", n) ;
 						for (i = 1 ; i <= n ; i++) {
+							int seen[MAX_INPUT] = {0}, idx = 0;
 							int whatAreYouFeeling = i ;
-							while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4) {
-								int sum = 0 ;
-								while (whatAreYouFeeling > 0) {
-									int dig = (whatAreYouFeeling % 10) ;
-									sum += dig * dig ;
-									whatAreYouFeeling /= 10 ;
+							while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4 && !seen[whatAreYouFeeling]) {
+								seen[whatAreYouFeeling] = 1;
+								int sum = 0, temp = whatAreYouFeeling;
+								while (temp > 0) {
+									int dig = temp % 10;
+									sum += dig * dig;
+									temp /= 10;
 								}
 								whatAreYouFeeling = sum ;
 							}
