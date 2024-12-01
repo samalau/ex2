@@ -594,7 +594,6 @@ int main() {
 						while (maximumInput[i] == '0') i++ ;
 						if (i == ind || maximumInput[0] == ' ') {
 							while ((c = getchar()) != '\n' && c != EOF) ;
-							// }
 							printf("Only positive maximum number is allowed, please try again:\n") ;
 							continue ;
 						}
