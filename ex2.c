@@ -148,7 +148,11 @@ int main() {
 						char input[MAX_INPUT + 1] = {0} ;
 						ind = 0 ;
 						int frontSection = 0, endSection = 0 ;
-						while ((c = getchar()) != '\n' && c != EOF) {
+						while (1) {
+							c = getchar();
+							if (c == '\n' || c == EOF) {
+								break;
+							}
 							if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 								ind = 0 ;
 								while ((c = getchar()) != '\n' && c != EOF) ;
@@ -156,15 +160,19 @@ int main() {
 							}
 							input[ind++] = c ;
 						}
-						if (ind) {
-							input[ind] = '\0' ;
-							i = 0 ;
-							while (input[i] == '0') {
-								i++ ;
-							}
-							if (i == ind) {
-								ind = 0 ;
-							}
+						if (ind > 0) {
+							input[ind] = '\0';
+						} else {
+							ind = 0 ;
+							printf("Only positive number is allowed, please try again:\n");
+							continue;
+						}
+						i = 0 ;
+						while (input[i] == '0') {
+							i++ ;
+						}
+						if (i == ind) {
+							ind = 0 ;
 						}
 						if (!ind || i == ind) {
 							if (c != '\n') {
@@ -208,12 +216,16 @@ int main() {
 				break ;
 				// Case 3
 				case 3: {
-					int ind = 0 ;
-					printf("Enter a number:\n") ;
+					int ind = 0, i = 0 ;
+					printf("Enter a number:\n");
 					while (ind == 0) {
-						char input[MAX_INPUT + 1] = {0} ;
-						ind = 0 ;
-						while ((c = getchar()) != '\n' && c != EOF) {
+						char input[MAX_INPUT + 1] = {0};
+						ind = 0;
+						while (1) {
+							c = getchar();
+							if (c == '\n' || c == EOF) {
+								break;
+							}
 							if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 								ind = 0 ;
 								while ((c = getchar()) != '\n' && c != EOF) ;
@@ -221,49 +233,104 @@ int main() {
 							}
 							input[ind++] = c ;
 						}
-						if (ind) {
-							input[ind] = '\0' ;
-						}
 						
-						if (!ind) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							printf("Only positive number is allowed, please try again:\n") ;
-							continue ;
+						if (ind > 0) {
+							input[ind] = '\0';
+						} else {
+							ind = 0 ;
+							printf("Only positive number is allowed, please try again:\n");
+							continue;
 						}
-						int i = 0 ;
+						i = 0;
 						while (input[i] == '0') {
 							i++ ;
 						}
-						int k = 0, n = 0 ;
-						for (k = i ; k < ind ; k++) {
-							n = n * 10 + (input[k] - '0') ;
+						if (i == ind) {
+							ind = 0 ;
 						}
-						int sum = 0 ;
-						for (i = 2 ; i * i <= n ; i++) {
+						int k = 0, n = 0;
+						for (k = i; k < ind; k++) {
+							n = n * 10 + (input[k] - '0');
+						}
+						if (n < 1 || n > MAX_INPUT) {
+							ind = 0;
+							printf("Only positive number is allowed, please try again:\n");
+							continue;
+						}
+						int sum = 0;
+						for (i = 1; i * i <= n; i++) {
 							if (n % i == 0) {
-								sum += i ;
+								sum += i;
 								if (i != n / i) {
-									sum += n / i ;
+									sum += n / i;
 								}
 							}
 						}
-						if (n < 1 || n > MAX_INPUT) {
-							ind = 0 ;
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
-							printf("Only positive number is allowed, please try again:\n") ;
-							continue ;
-						}
 						if (sum > n) {
-							printf("This number is generous!\n") ;
+							printf("This number is generous!\n");
 						} else {
-							printf("This number does not share.\n") ;
+							printf("This number does not share.\n");
 						}
+						break;
 					}
 				}
+				// case 3: {
+				// 	int ind = 0 ;
+				// 	printf("Enter a number:\n") ;
+				// 	while (ind == 0) {
+				// 		char input[MAX_INPUT + 1] = {0} ;
+				// 		ind = 0 ;
+				// 		while ((c = getchar()) != '\n' && c != EOF) {
+				// 			if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
+				// 				ind = 0 ;
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 				break ;
+				// 			}
+				// 			input[ind++] = c ;
+				// 		}
+				// 		if (ind) {
+				// 			input[ind] = '\0' ;
+				// 		}
+						
+				// 		if (!ind) {
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			printf("Only positive number is allowed, please try again:\n") ;
+				// 			continue ;
+				// 		}
+				// 		int i = 0 ;
+				// 		while (input[i] == '0') {
+				// 			i++ ;
+				// 		}
+				// 		int k = 0, n = 0 ;
+				// 		for (k = i ; k < ind ; k++) {
+				// 			n = n * 10 + (input[k] - '0') ;
+				// 		}
+				// 		int sum = 0 ;
+				// 		for (i = 2 ; i * i <= n ; i++) {
+				// 			if (n % i == 0) {
+				// 				sum += i ;
+				// 				if (i != n / i) {
+				// 					sum += n / i ;
+				// 				}
+				// 			}
+				// 		}
+				// 		if (n < 1 || n > MAX_INPUT) {
+				// 			ind = 0 ;
+				// 			if (c != '\n') {
+				// 				while ((c = getchar()) != '\n' && c != EOF) ;
+				// 			}
+				// 			printf("Only positive number is allowed, please try again:\n") ;
+				// 			continue ;
+				// 		}
+				// 		if (sum > n) {
+				// 			printf("This number is generous!\n") ;
+				// 		} else {
+				// 			printf("This number does not share.\n") ;
+				// 		}
+				// 	}
+				// }
 				break ;
 				// Case 4
 				case 4: {
