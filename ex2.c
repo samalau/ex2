@@ -15,7 +15,8 @@ int main() {
 
 	int option = 0 ;
 	while (option != 7) {
-		char c ;
+		int c ;
+		// char c ;
 		option = 0 ;
 			printf("Choose an option:"
 				"\n\t1. Happy Face"
@@ -25,133 +26,122 @@ int main() {
 				"\n\t5. Happy Numbers"
 				"\n\t6. Festival Of Laughter"
 				"\n\t7. Exit\n") ;
-		int optionInput = scanf(" %d", &option) ;
-		c = getchar() ;
-		if (c != '\n') {
-			while ((c = getchar()) != '\n' && c != EOF) ;
+		if (scanf(" %d", &option) != 1 || option < 1 || option > 7) {
+			printf("This option is not available, please try again.\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+			continue;
 		}
-		if ((option != 1 &&
-					option != 2 &&
-					option != 3 &&
-					option != 4 &&
-					option != 5 &&
-					option != 6 &&
-					option != 7) ||
-					optionInput != 1) {
-			printf("This option is not available, please try again.\n") ;
-			continue ;
-		} else if (optionInput == 1 && 1 <= option && option <= 7) {
-			if (option == 7) {
+		
+		switch (option) {
+			case 7: {
 				printf("Thank you for your journey through Numeria!\n") ;
 				break ;
-			} else {
-						// Case 1: Happy Face
-				while (option == 1) {
-					char eyes = '\0', nose = '\0', mouth = '\0' ;
-					int faceSize = 0 ;
-					// symbols --> face size --> make face
-					printf("Enter symbols for the eyes, nose, and mouth:\n") ;
-					while (eyes == '\0' && nose == '\0' && mouth == '\0') {
-						eyes = '\0', nose = '\0', mouth = '\0' ;
-						char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
+			}
+			// Case 1: Happy Face
+			case 1: {
+				char eyes = '\0', nose = '\0', mouth = '\0' ;
+				int faceSize = 0 ;
+				// symbols --> face size --> make face
+				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
+				while (eyes == '\0' && nose == '\0' && mouth == '\0') {
+					eyes = '\0', nose = '\0', mouth = '\0' ;
+					char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
+					int ind = 0 ;
+					while ((c = getchar()) != '\n' && c != EOF) {
+						if (ind < SYMBOLS_INPUT_SIZE && ((ind % 2 == 0 && c >= 33) || (ind % 2 == 1 && c == ' '))) {
+							symbolsInput[ind++] = c;
+						} else {
+							ind = 0;
+							while ((c = getchar()) != '\n' && c != EOF);
+							break;
+						}
+					}
+					symbolsInput[ind] = '\0' ;					
+					eyes = symbolsInput[0] ;
+					nose = symbolsInput[2] ;
+					mouth = symbolsInput[4] ;
+				}
+				// --> face size --> make face
+				if (eyes != '\0' && nose != '\0' && mouth != '\0') {
+					printf("Enter face size:\n") ;
+					while (faceSize == 0) {
+						char faceSizeInput[MAX_INPUT + 1] = {0} ;
+						faceSize = 0 ;
 						int ind = 0 ;
 						while ((c = getchar()) != '\n' && c != EOF) {
-							if (ind < SYMBOLS_INPUT_SIZE && ((ind % 2 == 0 && c >= 33) || (ind % 2 == 1 && c == ' '))) {
-								symbolsInput[ind++] = c;
-							} else {
-								ind = 0;
-								while ((c = getchar()) != '\n' && c != EOF);
-								break;
+							if (ind >= MAX_INPUT - 1 || c < ' ' || '9' < c) {
+								faceSizeInput[0] = ' ' ;
+								break ;
+							}
+							if (c != ' ') {
+								faceSizeInput[ind++] = c ;
 							}
 						}
-						symbolsInput[ind] = '\0' ;					
-						eyes = symbolsInput[0] ;
-						nose = symbolsInput[2] ;
-						mouth = symbolsInput[4] ;
-					}
-					// --> face size --> make face
-					if (eyes != '\0' && nose != '\0' && mouth != '\0') {
-						printf("Enter face size:\n") ;
-						while (faceSize == 0) {
-							char faceSizeInput[MAX_INPUT + 1] = {0} ;
-							faceSize = 0 ;
-							int ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) {
-								if (ind >= MAX_INPUT - 1 || c < ' ' || '9' < c) {
-									faceSizeInput[0] = ' ' ;
-									break ;
-								}
-								if (c != ' ') {
-									faceSizeInput[ind++] = c ;
-								}
+						if (faceSizeInput[0] != ' ') {
+							faceSizeInput[ind] = '\0' ;
+							int i = 0 ;
+							while (faceSizeInput[i] == '0') {
+								i++ ;
 							}
-							if (faceSizeInput[0] != ' ') {
-								faceSizeInput[ind] = '\0' ;
-								int i = 0 ;
-								while (faceSizeInput[i] == '0') {
-									i++ ;
-								}
-								if (i == ind) {
+							if (i == ind) {
+								faceSize = 0 ;
+							} else {
+								int lastDigit = faceSizeInput[ind - 1] ;
+								if (lastDigit % 2 == 0) {
 									faceSize = 0 ;
 								} else {
-									int lastDigit = faceSizeInput[ind - 1] ;
-									if (lastDigit % 2 == 0) {
+									faceSize = 0 ;
+									for (int k = i ; k < ind ; k++) {
+										faceSize = faceSize * 10 + (faceSizeInput[k] - '0') ;
+									}
+									if (faceSize <= 0) {
 										faceSize = 0 ;
-									} else {
-										faceSize = 0 ;
-										for (int k = i ; k < ind ; k++) {
-											faceSize = faceSize * 10 + (faceSizeInput[k] - '0') ;
-										}
-										if (faceSize <= 0) {
-											faceSize = 0 ;
-										}
 									}
 								}
 							}
-							if (faceSize == 0 || faceSizeInput[0] == ' ') {
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
-								printf("The face's size must be an odd and positive number, please try again:\n") ;
+						}
+						if (faceSize == 0 || faceSizeInput[0] == ' ') {
+							if (c != '\n') {
+								while ((c = getchar()) != '\n' && c != EOF) ;
+							}
+							printf("The face's size must be an odd and positive number, please try again:\n") ;
+						}
+					}
+					// --> make face
+					if (faceSize % 2 == 1) {
+						int secondEye = faceSize + 1 ;
+						for (int i = 0 ; i <= secondEye ; i++) {
+							if (i == 0) {
+								putchar(eyes) ;
+							} else if (i == secondEye) {
+								printf("%c\n", eyes) ;
+							} else {
+								putchar(' ') ;
 							}
 						}
-						// --> make face
-						if (faceSize % 2 == 1) {
-							int secondEye = faceSize + 1 ;
-							for (int i = 0 ; i <= secondEye ; i++) {
-								if (i == 0) {
-									putchar(eyes) ;
-								} else if (i == secondEye) {
-									printf("%c\n", eyes) ;
-								} else {
-									putchar(' ') ;
-								}
-							}
-							int second = (1 + faceSize) / 2 ;
-							for (int i = 0 ; i <= second ; i++) {
-								if (i == second) {
-									printf("%c\n", nose) ;
-								} else {
-									putchar(' ') ;
-								}
-							}
-							int makeMouth = faceSize + 1 ;
-							for (int i = 0 ; i <= makeMouth ; i++) {
-								if (i == 0) {
-									putchar('\\') ;
-								} else if (i == makeMouth) {
-									printf("/\n") ;
-								} else {
-									putchar(mouth) ;
-								}
+						int second = (1 + faceSize) / 2 ;
+						for (int i = 0 ; i <= second ; i++) {
+							if (i == second) {
+								printf("%c\n", nose) ;
+							} else {
+								putchar(' ') ;
 							}
 						}
-						option = 0 ;
+						int makeMouth = faceSize + 1 ;
+						for (int i = 0 ; i <= makeMouth ; i++) {
+							if (i == 0) {
+								putchar('\\') ;
+							} else if (i == makeMouth) {
+								printf("/\n") ;
+							} else {
+								putchar(mouth) ;
+							}
+						}
 					}
 				}
-
+				break ;
 				// Case 2
-				while (option == 2) {
+				case 2: {
 					int ind = 0, i = 0 ;
 					printf("Enter a number:\n") ;
 					while (ind == 0) {
@@ -183,7 +173,7 @@ int main() {
 							printf("Only positive number is allowed, please try again:\n") ;
 							continue ;
 						}
-						int length = ind - i; // Exclude leading zeros
+						int length = ind - i;
 						if (length == 1) {
 							frontSection = 0;
 							endSection = 0;
@@ -214,11 +204,10 @@ int main() {
 						printf("This number isn't balanced and destroys harmony.\n") ;
 						break ;
 					}
-					option = 0 ;
 				}
-
+				break ;
 				// Case 3
-				while (option == 3) {
+				case 3: {
 					int ind = 0 ;
 					printf("Enter a number:\n") ;
 					while (ind == 0) {
@@ -274,11 +263,10 @@ int main() {
 							printf("This number does not share.\n") ;
 						}
 					}
-					option = 0 ;
 				}
-
+				break ;
 				// Case 4
-				while (option == 4) {
+				case 4: {
 					int ind = 0 ;
 					printf("Enter a number:\n") ;
 					while (ind == 0) {
@@ -361,11 +349,10 @@ int main() {
 						}
 						break ;
 					}
-					option = 0 ;
 				}
-
+				break ;
 				// Case 5: Happy numbers
-				while (option == 5) {
+				case 5: {
 					int valid = 1 ;
 					printf("Enter a number:\n") ;
 					while (1) {
@@ -414,11 +401,10 @@ int main() {
 						printf("\n") ;
 						break ;
 					}
-					option = 0 ;
 				}
-
+				break ;
 				// Case 6: Festival of Laughter
-				while (option == 6) {
+				case 6: {
 					printf("Enter a smile and cheer number:\n") ;
 					char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'},
 						cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
@@ -614,7 +600,6 @@ int main() {
 							printf("%d\n", i) ;
 						}
 					}
-					option = 0 ;
 				}
 			}
 		}
