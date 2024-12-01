@@ -327,10 +327,31 @@ int main() {
 						for (int v = 0; v < 2; v++) {
 							int current = n_values[v], d = current - 1, r = 0;
 							while (d % 2 == 0) { d /= 2; r++; }
-							for (int i = 0; i < 8 && bases[i] < current; i++) {
-								if (!isPotentialPrime(current, bases[i], d, r)) {
-									forward = reverse = 0; 
-									break;
+							for (int b = 0; b < 8 && bases[b] < current; b++) {
+								int base = bases[b];
+								int x = 1, d_copy = d;
+								while (d_copy) {
+									if (d_copy % 2 == 1) {
+										x = (x * base) % current;
+									}
+									base = (base * base) % current;
+									d_copy /= 2;
+								}
+
+								if (x != 1 && x != current - 1) {
+									int composite = 1;
+									for (int j = 0; j < r - 1 && composite; j++) {
+										x = (x * x) % current;
+										if (x == current - 1) {
+											composite = 0;
+											break;
+										}
+									}
+									if (composite) {
+										if (v == 0) forward = 0;
+										if (v == 1) reverse = 0;
+										break;
+									}
 								}
 							}
 						}
