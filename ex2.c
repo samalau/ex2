@@ -391,17 +391,22 @@ int main() {
 					}
 					printf("Between 1 and %d only these numbers bring happiness: ", n) ;
 					for (i = 1 ; i <= n ; i++) {
-						int seen[MAX_INPUT] = {0} ;
-						int whatAreYouFeeling = i ;
-						while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4 && !seen[whatAreYouFeeling]) {
-							seen[whatAreYouFeeling] = 1 ;
-							int sum = 0, temp = whatAreYouFeeling ;
-							while (temp > 0) {
-								int dig = temp % 10 ;
-								sum += dig * dig ;
-								temp /= 10 ;
+						int seen[1000] = {0};
+						int whatAreYouFeeling = i;
+						while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4) {
+							if (whatAreYouFeeling < 1000) {
+								if (seen[whatAreYouFeeling]) {
+									break;
+								}
+								seen[whatAreYouFeeling] = 1;
 							}
-							whatAreYouFeeling = sum ;
+							int sum = 0, temp = whatAreYouFeeling;
+							while (temp > 0) {
+								int dig = temp % 10;
+								sum += dig * dig;
+								temp /= 10;
+							}
+							whatAreYouFeeling = sum;
 						}
 						if (whatAreYouFeeling == 1) {
 							printf("%d ", i) ;
