@@ -16,7 +16,6 @@ int main() {
 	int option = 0 ;
 	while (option != 7) {
 		int c ;
-		// char c ;
 		option = 0 ;
 			printf("Choose an option:"
 				"\n\t1. Happy Face"
@@ -28,10 +27,12 @@ int main() {
 				"\n\t7. Exit\n") ;
 		if (scanf(" %d", &option) != 1 || option < 1 || option > 7) {
 			printf("This option is not available, please try again.\n") ;
-			while ((c = getchar()) != '\n' && c != EOF) ;
+			scanf("%*[^\n]") ;
+			scanf("%*c") ;
 			continue ;
 		}
-		while ((c = getchar()) != '\n' && c != EOF) ;
+		scanf("%*[^\n]") ;
+		scanf("%*c") ;
 		switch (option) {
 			case 7: {
 				printf("Thank you for your journey through Numeria!\n") ;
@@ -42,7 +43,7 @@ int main() {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
 				int faceSize = 0 ;
 
-				printf("Enter symbols for the eyes, nose, and mouth (format: eye space nose space mouth):\n") ;
+				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (eyes == '\0' || nose == '\0' || mouth == '\0') {
 					char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
 					int ind = 0 ;
@@ -52,7 +53,8 @@ int main() {
 							symbolsInput[ind++] = c ;
 						} else {
 							ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							break ;
 						}
 					}
@@ -61,7 +63,7 @@ int main() {
 					if (ind != SYMBOLS_INPUT_SIZE ||
 						symbolsInput[1] != ' ' || symbolsInput[3] != ' ' ||
 						symbolsInput[0] < 33 || symbolsInput[2] < 33 || symbolsInput[4] < 33) {
-						printf("Invalid input! Please enter symbols in the format: eye (symbol) space nose (symbol) space mouth (symbol).\n") ;
+						printf("Invalid input! Please enter symbols in the format:\n") ;
 						eyes = nose = mouth = '\0' ;
 					} else {
 						// Assign valid symbols
@@ -71,14 +73,15 @@ int main() {
 					}
 				}
 
-				printf("Enter face size (must be an odd and positive number):\n") ;
+				printf("Enter face size:\n") ;
 				while (faceSize == 0) {
 					char faceSizeInput[MAX_INPUT + 1] = {0} ;
 					int ind = 0 ;
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || c > '9') {
 							ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							break ;
 						}
 						faceSizeInput[ind++] = c ;
@@ -155,7 +158,8 @@ int main() {
 						}
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							break ;
 						}
 						input[ind++] = c ;
@@ -175,9 +179,8 @@ int main() {
 						ind = 0 ;
 					}
 					if (!ind || i == ind) {
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
@@ -228,7 +231,8 @@ int main() {
 						}
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							break ;
 						}
 						input[ind++] = c ;
@@ -286,7 +290,8 @@ int main() {
 					while ((c = getchar()) != '\n' && c != EOF) {
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
-							while ((c = getchar()) != '\n' && c != EOF) ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							break ;
 						}
 						input[ind++] = c ;
@@ -308,9 +313,8 @@ int main() {
 						}
 					}
 					if (!ind) {
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
@@ -379,9 +383,8 @@ int main() {
 					int i = 0 ;
 					while (input[i] == '0') i++ ;
 					if (!valid || i == ind) {
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
@@ -446,9 +449,8 @@ int main() {
 						for (int j = 0 ; j < 6 ; j++) {
 							if (identifySmile[j] != smileCheck[j]) {
 								identifySmile[0] = ' ' ;
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
 								printf("Only 2 different positive numbers in the given format"
 										" are allowed for the festival, please try again:\n") ;
 								break ;
@@ -460,9 +462,8 @@ int main() {
 							c = getchar() ;
 						}
 						if (c < '0' || '9' < c ) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
@@ -472,9 +473,8 @@ int main() {
 							smileNumberIn[ind++] = c ;
 							if (ind >= MAX_INPUT - 1) {
 								smileNumberIn[0] = ' ' ;
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
 								printf("Only 2 different positive numbers in the given format"
 										" are allowed for the festival, please try again:\n") ;
 								break ;
@@ -490,9 +490,8 @@ int main() {
 						}
 						if (smileNumber <= 0) {
 							smileNumber = 0 ;
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
@@ -520,9 +519,8 @@ int main() {
 						for (int j = 0 ; j < 6 ; j++) {
 							if (identifyCheer[j] != cheerCheck[j]) {
 								identifyCheer[0] = ' ' ;
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
 								printf("Only 2 different positive numbers in the given format"
 										" are allowed for the festival, please try again:\n") ;
 								break ;
@@ -534,9 +532,8 @@ int main() {
 							c = getchar() ;
 						}
 						if (c < '0' || '9' < c ) {
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
@@ -546,9 +543,8 @@ int main() {
 							cheerNumberIn[ind++] = c ;
 							if (ind >= MAX_INPUT - 1) {
 								cheerNumberIn[0] = ' ' ;
-								if (c != '\n') {
-									while ((c = getchar()) != '\n' && c != EOF) ;
-								}
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
 								printf("Only 2 different positive numbers in the given format"
 										" are allowed for the festival, please try again:\n") ;
 								break ;
@@ -571,9 +567,8 @@ int main() {
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
 						}
-						if (c != '\n') {
-							while ((c = getchar()) != '\n' && c != EOF) ;
-						}
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 					}
 				}
 				printf("Enter maximum number for the festival:\n") ;
@@ -592,7 +587,8 @@ int main() {
 					int i = 0 ; 
 					while (maximumInput[i] == '0') i++ ;
 					if (i == ind || maximumInput[0] == ' ') {
-						while ((c = getchar()) != '\n' && c != EOF) ;
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						printf("Only positive maximum number is allowed, please try again:\n") ;
 						continue ;
 					}
