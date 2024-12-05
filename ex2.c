@@ -50,8 +50,6 @@ int main() {
 				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (eyes == '\0' || nose == '\0' || mouth == '\0') {
 					if (scanf(" %c %c %c", &eyes, &nose, &mouth) == EOF) {
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
 						option = 7 ;
 						break ;
 					}
@@ -71,13 +69,7 @@ int main() {
 							option = 7 ;
 							break ;
 						}
-						if (input != 1) {
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							printf("The face's size must be an odd and positive number, please try again:\n") ;
-							continue ;
-						}
-						if (faceSize <= 0 || faceSize % 2 == 0) {
+						if (input != 1 || faceSize <= 0 || faceSize % 2 == 0) {
 							faceSize = 0 ;
 							scanf("%*[^\n]") ;
 							scanf("%*c") ;
@@ -86,12 +78,12 @@ int main() {
 						}
 					}
 
-					scanf("%*[^\n]") ;
-					scanf("%*c") ;
-
 					if (option == 7) {
 						break ;
 					}
+
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
 
 					// Draw eyes
 					int secondEye = faceSize + 1 ;
@@ -147,14 +139,13 @@ int main() {
 					}
 				}
 
-				scanf("%*[^\n]") ;
-				scanf("%*c") ;
-
 				if (option == 7) {
 					break ;
 				}
 
-				int frontSection = 0, endSection = 0 ;
+				scanf("%*[^\n]") ;
+				scanf("%*c") ;
+
 				int length = 0 ;
 				int remain = number ;
 				while (remain != 0) {
@@ -170,7 +161,7 @@ int main() {
 					for (int j = 0 ; j < chunk ; j++) {
 						divider *= 10 ;
 					}
-
+					int frontSection = 0, endSection = 0 ;
 					frontSection = number / divider ;
 					endSection = number % divider ;
 					int *sections[] = { &frontSection, &endSection } ;
@@ -320,9 +311,12 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
+
 					scanf("%*[^\n]") ;
 					scanf("%*c") ;
+
 					printf("Between 1 and %d only these numbers bring happiness: ", finalNumber) ;
+					
 					for (int i = 1 ; i <= finalNumber ; i++) {
 						int seen[1000] = {0};
 						int whatAreYouFeeling = i;
@@ -368,9 +362,10 @@ int main() {
 				}
 				scanf("%*[^\n]") ;
 				scanf("%*c") ;
+
 				printf("Enter maximum number for the festival:\n") ;
 				int maxNum = 0 ;
-				if (scanf(" %d", &maxNum) != 1 || maxNum <= 0) {
+				while (scanf(" %d", &maxNum) != 1 || maxNum <= 0) {
 					maxNum = 0 ;
 					scanf("%*[^\n]") ;
 					scanf("%*c") ;
@@ -379,6 +374,7 @@ int main() {
 				}
 				scanf("%*[^\n]") ;
 				scanf("%*c") ;
+				
 				for (int i = 1 ; i <= maxNum ; i++) {
 					int isSmile = (i % smileNumber) == 0 ;
 					int isCheer = (i % cheerNumber) == 0 ;
