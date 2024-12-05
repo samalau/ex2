@@ -15,29 +15,35 @@ int option = 0 ;
 
 int main() {
 	while (option != 7) {
-		int c ;
+		
 		option = 0 ;
-			printf("Choose an option:"
-				"\n\t1. Happy Face"
-				"\n\t2. Balanced Number"
-				"\n\t3. Generous Number"
-				"\n\t4. Circle Of Joy"
-				"\n\t5. Happy Numbers"
-				"\n\t6. Festival Of Laughter"
-				"\n\t7. Exit\n") ;
+
+		printf("Choose an option:"
+			"\n\t1. Happy Face"
+			"\n\t2. Balanced Number"
+			"\n\t3. Generous Number"
+			"\n\t4. Circle Of Joy"
+			"\n\t5. Happy Numbers"
+			"\n\t6. Festival Of Laughter"
+			"\n\t7. Exit\n") ;
+		
 		if (scanf(" %d", &option) != 1 || option < 1 || option > 7) {
 			printf("This option is not available, please try again.\n") ;
 			scanf("%*[^\n]") ;
 			scanf("%*c") ;
 			continue ;
 		}
+
 		scanf("%*[^\n]") ;
 		scanf("%*c") ;
+
 		switch (option) {
+
 			case 7: {
 				printf("Thank you for your journey through Numeria!\n") ;
 				break ;
 			}
+
 			// Case 1: Happy Face
 			case 1: {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
@@ -123,6 +129,7 @@ int main() {
 				}
 				break ;
 			}
+
 			// Case 2
 			case 2: {
 				int ind = 0, i = 0 ;
@@ -195,8 +202,9 @@ int main() {
 					printf("This number isn't balanced and destroys harmony.\n") ;
 					break ;
 				}
+				break ;
 			}
-			break ;
+			
 			// Case 3
 			case 3: {
 				int ind = 0, i = 0 ;
@@ -256,57 +264,42 @@ int main() {
 					}
 					break ;
 				}
-			}
 			break ;
+			}
+			
 			// Case 4
 			case 4: {
-				int ind = 0 ;
 				printf("Enter a number:\n") ;
-				while (ind == 0) {
-					// circle is complete only if both forward, reverse are 1
-					int forward = 1, reverse = 1 ;  
-					char input[MAX_INPUT + 1] = {0} ;
-					ind = 0 ;
-					while ((c = getchar()) != '\n' && c != EOF) {
-						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
-							ind = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							break ;
-						}
-						input[ind++] = c ;
+				int forward = 0 ;
+				while (forward <= 0) {
+					int input = scanf(" %d", &forward) ;
+					if (input == EOF) {
+						option = 7 ;
+						break ;
 					}
-					int i = 0, k = 0, n = 0 ;
-					if (ind) {
-						input[ind] = '\0' ;
-						while (input[i] == '0') {
-							i++ ;
-						}
-						for (k = i ; k < ind ; k++) {
-							n = n * 10 + (input[k] - '0') ;
-						}
-						if (n == 1) {
-							printf("The circle remains incomplete.\n") ;
-							break ;
-						} else if (n < 1) {
-							ind = 0 ;
-						}
-					}
-					if (!ind) {
+					if (input != 1 || forward <= 0) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					int n_copy = n, n_reversed = 0 ;
-					while (n_copy > 0) {
-						n_reversed = (n_reversed * 10) + (n_copy % 10) ;
-						n_copy /= 10 ;
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+					if (forward == 1) {
+						printf("The circle remains incomplete.\n") ;
+						break ;
+					}
+					int forwardCopy = forward ;
+					int reverse = 0 ;
+					while (forwardCopy > 0) {
+						reverse = (reverse * 10) + (forwardCopy % 10) ;
+						forwardCopy /= 10 ;
 					}
 					int bases[] = {2, 3, 5, 7, 11, 13, 17, 19} ;
-					int n_values[] = {n, n_reversed} ;
+					int values[] = {forward, reverse} ;
+					int isForward = 1 , isReverse = 1 ;
 					for (int v = 0 ; v < 2 ; v++) {
-						int current = n_values[v], d = current - 1, r = 0 ;
+						int current = values[v], d = current - 1, r = 0 ;
 						while (d % 2 == 0) { d /= 2 ; r++ ; }
 						for (int b = 0 ; b < 8 && bases[b] < current ; b++) {
 							int base = bases[b] ;
@@ -328,14 +321,14 @@ int main() {
 									}
 								}
 								if (composite) {
-									if (v == 0) forward = 0 ;
-									if (v == 1) reverse = 0 ;
+									if (v == 0) isForward = 0 ;
+									if (v == 1) isReverse = 0 ;
 									break ;
 								}
 							}
 						}
 					}
-					if (forward && reverse) {
+					if (isForward && isReverse) {
 						printf("This number completes the circle of joy!\n") ;
 					} else {
 						printf("The circle remains incomplete.\n") ;
@@ -346,34 +339,26 @@ int main() {
 			break ;
 			// Case 5: Happy numbers
 			case 5: {
-				int valid = 1 ;
 				printf("Enter a number:\n") ;
-				while (1) {
-					char input[MAX_INPUT + 1] = {0} ;
-					valid = 1 ;
-					int ind = 0 ;
-					while ((c = getchar()) != '\n' && c != EOF) {
-						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
-							valid = 0 ;
-							break ;
-						}
-						input[ind++] = c ;
+				int finalNumber = 0 ;
+				while (finalNumber <= 0) {
+					int input = scanf(" %d", &finalNumber) ;
+					if (input == EOF) {
+						option = 7 ;
+						break ;
 					}
-					input[ind] = '\0' ;
-					int i = 0 ;
-					while (input[i] == '0') i++ ;
-					if (!valid || i == ind) {
+					if (input != 1 || finalNumber <= 0) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					int k= 0, n = 0 ;
-					for (k = i ; k < ind ; k++) {
-						n = n * 10 + (input[k] - '0') ;
-					}
-					printf("Between 1 and %d only these numbers bring happiness: ", n) ;
-					for (i = 1 ; i <= n ; i++) {
+
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+				
+					printf("Between 1 and %d only these numbers bring happiness: ", finalNumber) ;
+					for (int i = 1 ; i <= finalNumber ; i++) {
 						int seen[1000] = {0};
 						int whatAreYouFeeling = i;
 						while (whatAreYouFeeling != 1 && whatAreYouFeeling != 4) {
@@ -398,8 +383,8 @@ int main() {
 					printf("\n") ;
 					break ;
 				}
+				break ;
 			}
-			break ;
 			// Case 6: Festival of Laughter
 			case 6: {
 				printf("Enter a smile and cheer number:\n") ;
