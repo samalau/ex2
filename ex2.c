@@ -412,7 +412,7 @@ int main() {
 						}
 					}
 					if (saysSmile) {
-						if (scanf("%*[^\:]") != 1) {
+						if (scanf("%*[^:]") != 1) {
 							invalid = 1 ;
 						}
 						if (!invalid) {
@@ -434,7 +434,7 @@ int main() {
 									break ;
 								}
 								if (i == 7) {
-									if (scanf("%*[^\,]") != 1) {
+									if (scanf("%*[^,]") != 1) {
 										saysSmile = 0 ;
 									} else {
 										saysCheer = 1 ;
@@ -450,7 +450,7 @@ int main() {
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
 					}
-					if (scanf("%*[^\:]") != 1) {
+					if (scanf("%*[^:]") != 1) {
 						invalid = 1 ;
 					}
 					if (!invalid) {
