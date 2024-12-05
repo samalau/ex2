@@ -139,7 +139,7 @@ int main() {
 						option = 7 ;
 						break ;
 					}
-					if (input != 1) {
+					if (input != 1 || number <= 0) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
@@ -202,19 +202,12 @@ int main() {
 						option = 7 ;
 						break ;
 					}
-					if (input != 1) {
+					if (input != 1 || number <= 0) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					// if (number <= 0) {
-					// 	number = 0 ;
-					// 	scanf("%*[^\n]") ;
-					// 	scanf("%*c") ;
-					// 	printf("Only positive number is allowed, please try again:\n") ;
-					// 	continue ;
-					// }
 				}
 
 				scanf("%*[^\n]") ;
