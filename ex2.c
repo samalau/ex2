@@ -48,8 +48,6 @@ int main() {
 					char faceComponents = scanf(" %c %c %c", &eyes, &nose, &mouth) ;
 					if (faceComponents == EOF ) {
 						option = 7 ;
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
 						break ;
 					}
 					if (faceComponents != 3) {
@@ -83,8 +81,9 @@ int main() {
 						if (scanf("%c", &complete) == 1) {
 							if (complete == '\n') {
 								break ;
-							} else if (complete >= 0 && complete <= 9) {
-								faceDigit = complete - '0' ;
+							} else if (complete >= '0' && complete <= '9') {
+								faceSizeInput[ind++] = complete - '0' ;
+								continue ;
 							} else {
 								ind = 0 ;
 								faceDigit = -1 ;
