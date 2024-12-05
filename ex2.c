@@ -160,6 +160,7 @@ int main() {
 				if (option == 7) {
 					break ;
 				}
+				
 				int frontSection = 0, endSection = 0 ;
 				int length = 0 ;
 				int remain = number ;
@@ -196,7 +197,7 @@ int main() {
 				printf("This number isn't balanced and destroys harmony.\n") ;
 				break ;
 			}
-			
+
 			// Case 3
 			case 3: {
 				char c ;
