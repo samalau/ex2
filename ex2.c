@@ -44,6 +44,8 @@ int main() {
 				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (eyes == '\0' || nose == '\0' || mouth == '\0') {
 					if (scanf(" %c %c %c", &eyes, &nose, &mouth) == EOF) {
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						option = 7 ;
 						break ;
 					}
@@ -79,6 +81,8 @@ int main() {
 					}
 
 					if (option == 7) {
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						break ;
 					}
 
@@ -114,8 +118,8 @@ int main() {
 							printf("%c", mouth) ;
 						}
 					}
-					scanf("%*[^\n]") ;
-					scanf("%*c") ;
+					// scanf("%*[^\n]") ;
+					// scanf("%*c") ;
 				}
 				break ;
 			}
