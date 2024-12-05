@@ -43,10 +43,8 @@ int main() {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
 				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (eyes == '\0' || nose == '\0' || mouth == '\0') {
-					char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
-					int ind = 0 ;
 					char faceComponents = scanf(" %c %c %c", &eyes, &nose, &mouth) ;
-					if (faceComponents == EOF ) {
+					if (faceComponents == EOF) {
 						option = 7 ;
 						break ;
 					}
