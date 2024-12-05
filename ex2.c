@@ -51,7 +51,7 @@ int main() {
 						break ;
 					}
 					if (faceComponents != 3) {
-						continue ;
+						eyes = '\0', nose = '\0', mouth = '\0' ;
 					}
 					scanf("%*[^\n]") ;
 					scanf("%*c") ;
@@ -61,44 +61,34 @@ int main() {
 				int faceSize = 0 ;
 				while (faceSize == 0) {
 					char faceSizeInput[MAX_INPUT + 1] = {0} ;
-					int faceDigit = -1 ;
+					char faceDigit = '\0' ;
 					int ind = 0 ;
 					while (1) {
-						int input = scanf(" %d", &faceDigit) ;
-						if (input == EOF) {
+						if (scanf("%c", &faceDigit) == EOF) {
 							option = 7 ;
 							break ;
 						}
-						if (input != 1 || (input == 1 && faceDigit < 0)) {
+						if (faceDigit == '\n') {
+							if (ind == 0) {
+								printf("The face's size must be an odd and positive number, please try again:\n") ;
+								break ;
+							}
+							faceSizeInput[ind] = '\0' ;
+							break ;
+						}
+						if (faceDigit < '0' || faceDigit > '9') {
 							ind = 0 ;
-							faceDigit = -1 ;
 							scanf("%*[^\n]") ;
 							scanf("%*c") ;
 							printf("The face's size must be an odd and positive number, please try again:\n") ;
 							break ;
-						}
-						char complete ;
-						if (scanf("%c", &complete) == 1) {
-							if (complete == '\n') {
-								break ;
-							} else if (complete >= '0' && complete <= '9') {
-								faceSizeInput[ind++] = complete - '0' ;
-								continue ;
-							} else {
-								ind = 0 ;
-								faceDigit = -1 ;
-								scanf("%*[^\n]") ;
-								scanf("%*c") ;
-								printf("The face's size must be an odd and positive number, please try again:\n") ;
-								break ;
-							}
 						}
 						faceSizeInput[ind++] = faceDigit ;
 					}
 					if (option == 7) {
 						break ;
 					}
-					faceSizeInput[ind] = '\0' ;
+					
 					if (ind > 0) {
 						int i = 0 ;
 						while (faceSizeInput[i] == '0') i++ ;
@@ -109,12 +99,9 @@ int main() {
 							}
 						}
 					}
-					scanf("%*[^\n]") ;
-					scanf("%*c") ;
 					if (faceSize % 2 == 0 || faceSize <= 0) {
 						faceSize = 0 ;
 						printf("The face's size must be an odd and positive number, please try again:\n") ;
-						continue ;
 					}
 				}
 
