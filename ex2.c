@@ -83,7 +83,7 @@ int main() {
 						if (scanf("%c", &complete) == 1) {
 							if (complete == '\n') {
 								break ;
-							} else if (complete >= 0 || complete <= 9) {
+							} else if (complete >= 0 && complete <= 9) {
 								faceDigit = complete - '0' ;
 							} else {
 								ind = 0 ;
