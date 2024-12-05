@@ -68,6 +68,8 @@ int main() {
 						}
 						if (faceDigit == '\n') {
 							if (ind == 0) {
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
 								printf("The face's size must be an odd and positive number, please try again:\n") ;
 								break ;
 							}
@@ -86,6 +88,10 @@ int main() {
 					if (option == 7) {
 						break ;
 					}
+
+					if (!ind) {
+						continue ;
+					}
 					
 					if (ind > 0) {
 						int i = 0 ;
@@ -98,6 +104,7 @@ int main() {
 						}
 					}
 					if (faceSize % 2 == 0 || faceSize <= 0) {
+						ind = 0 ;
 						faceSize = 0 ;
 						printf("The face's size must be an odd and positive number, please try again:\n") ;
 					}
