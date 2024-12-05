@@ -132,7 +132,6 @@ int main() {
 			// Case 2
 			case 2: {
 				printf("Enter a number:\n") ;
-				int frontSection = 0, endSection = 0 ;
 				int number = 0 ;
 				while (number <= 0) {
 					int input = scanf(" %d", &number) ;
@@ -161,48 +160,40 @@ int main() {
 				if (option == 7) {
 					break ;
 				}
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-		
-					int length = ind - i ;
-					if (length == 1) {
-						frontSection = 0 ;
-						endSection = 0 ;
-					} else {
-						int value = 0, sectionSize = length / 2 ;
-						for (int k = i ; k < ind ; k++) {
-							value = value * 10 + (input[k] - '0') ;
-						}
-						int divider = 1 ;
-						for (int j = 0 ; j < sectionSize ; j++) {
-							divider *= 10 ;
-						}
-						frontSection = value / divider ;
-						endSection = value % divider ;
+				int frontSection = 0, endSection = 0 ;
+				int length = 0 ;
+				int remain = number ;
+				while (remain != 0) {
+					remain = number / 10 ;
+					length++ ;
+				}
+				if (length == 1) {
+					frontSection = 0 ;
+					endSection = 0 ;
+				} else {
+					int chunk = length / 2 ;
+					int divider = 1 ;
+					for (int j = 0 ; j < chunk ; j++) {
+						divider *= 10 ;
+					}
 
-						int *sections[] = { &frontSection, &endSection } ;
-						for (i = 0 ; i < 2 ; i++) {
-							int *sectionSpecific = sections[i] ;
-							while (*sectionSpecific > MAX_SUM) {
-								*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
-							}
+					frontSection = number / divider ;
+					endSection = number % divider ;
+					int *sections[] = { &frontSection, &endSection } ;
+
+					for (int i = 0 ; i < 2 ; i++) {
+						int *sectionSpecific = sections[i] ;
+						while (*sectionSpecific > MAX_SUM) {
+							*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
 						}
 					}
-					if (frontSection == endSection) {
-						printf("This number is balanced and brings harmony!\n") ;
-						break ;
-					}
-					printf("This number isn't balanced and destroys harmony.\n") ;
+				}
+
+				if (frontSection == endSection) {
+					printf("This number is balanced and brings harmony!\n") ;
 					break ;
 				}
+				printf("This number isn't balanced and destroys harmony.\n") ;
 				break ;
 			}
 			
