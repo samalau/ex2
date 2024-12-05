@@ -11,9 +11,9 @@ Assignment: ex2
 #define MAX_INPUT 2048
 #define MAX_SUM 9
 
-int main() {
+int option = 0 ;
 
-	int option = 0 ;
+int main() {
 	while (option != 7) {
 		int c ;
 		option = 0 ;
@@ -41,56 +41,55 @@ int main() {
 			// Case 1: Happy Face
 			case 1: {
 				char eyes = '\0', nose = '\0', mouth = '\0' ;
-				int faceSize = 0 ;
-
 				printf("Enter symbols for the eyes, nose, and mouth:\n") ;
 				while (eyes == '\0' || nose == '\0' || mouth == '\0') {
 					char symbolsInput[SYMBOLS_INPUT_SIZE + 1] = {0} ;
 					int ind = 0 ;
-
-					while ((c = getchar()) != '\n' && c != EOF) {
-						if (ind < SYMBOLS_INPUT_SIZE) {
-							symbolsInput[ind++] = c ;
-						} else {
-							ind = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							break ;
-						}
+					char faceComponents = scanf(" %c %c %c", &eyes, &nose, &mouth) ;
+					if (faceComponents == EOF ) {
+						option = 7 ;
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
+						break ;
 					}
-					symbolsInput[ind] = '\0' ;
-
-					if (ind != SYMBOLS_INPUT_SIZE ||
-						symbolsInput[1] != ' ' || symbolsInput[3] != ' ' ||
-						symbolsInput[0] < 33 || symbolsInput[2] < 33 || symbolsInput[4] < 33) {
-						printf("Invalid input! Please enter symbols in the format:\n") ;
-						eyes = nose = mouth = '\0' ;
-					} else {
-						// Assign valid symbols
-						eyes = symbolsInput[0] ;
-						nose = symbolsInput[2] ;
-						mouth = symbolsInput[4] ;
+					if (faceComponents != 3) {
+						continue ;
 					}
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
 				}
 
 				printf("Enter face size:\n") ;
+				int faceSize = 0 ;
 				while (faceSize == 0) {
 					char faceSizeInput[MAX_INPUT + 1] = {0} ;
+					int faceDigit = -1 ;
 					int ind = 0 ;
-					while ((c = getchar()) != '\n' && c != EOF) {
-						if (ind >= MAX_INPUT - 1 || c < '0' || c > '9') {
-							ind = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
+					while (1) {
+						int input = scanf(" %d", &faceDigit) ;
+						if (input == EOF) {
+							option = 7 ;
 							break ;
 						}
-						faceSizeInput[ind++] = c ;
+						if (input != 1 || (input == 1 && faceDigit < 0)) {
+							faceSize = 0 ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
+							printf("The face's size must be an odd and positive number, please try again:\n") ;
+							break ;
+						}
+						faceSizeInput[ind++] = faceDigit ;
 					}
+					if (option == 7) {
+						break ;
+					}
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+					
 					faceSizeInput[ind] = '\0' ;
 					if (ind > 0) {
 						int i = 0 ;
 						while (faceSizeInput[i] == '0') i++ ;
-
 						if (i < ind) {
 							faceSize = 0 ;
 							for (int k = i ; k < ind ; k++) {
@@ -103,6 +102,7 @@ int main() {
 					}
 					if (faceSize == 0) {
 						printf("The face's size must be an odd and positive number, please try again:\n") ;
+						continue ;
 					}
 				}
 
