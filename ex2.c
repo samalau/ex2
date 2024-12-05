@@ -72,6 +72,8 @@ int main() {
 							break ;
 						}
 						if (input != 1 || (input == 1 && faceDigit < 0)) {
+							ind = 0 ;
+							faceDigit = -1 ;
 							scanf("%*[^\n]") ;
 							scanf("%*c") ;
 							printf("The face's size must be an odd and positive number, please try again:\n") ;
@@ -80,12 +82,12 @@ int main() {
 						char complete ;
 						if (scanf("%c", &complete) == 1) {
 							if (complete == '\n') {
-								scanf("%*[^\n]") ;
-								scanf("%*c") ;
 								break ;
-							} else if (complete - '0' >= 0 || complete - '0' <= 9) {
+							} else if (complete >= 0 || complete <= 9) {
 								faceDigit = complete - '0' ;
 							} else {
+								ind = 0 ;
+								faceDigit = -1 ;
 								scanf("%*[^\n]") ;
 								scanf("%*c") ;
 								printf("The face's size must be an odd and positive number, please try again:\n") ;
@@ -106,12 +108,12 @@ int main() {
 							for (int k = i ; k < ind ; k++) {
 								faceSize = faceSize * 10 + (faceSizeInput[k] - '0') ;
 							}
-							if (faceSize <= 0 || faceSize % 2 == 0) {
-								faceSize = 0 ;
-							}
 						}
 					}
-					if (faceSize == 0) {
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+					if (faceSize % 2 == 0 || faceSize <= 0) {
+						faceSize = 0 ;
 						printf("The face's size must be an odd and positive number, please try again:\n") ;
 						continue ;
 					}
