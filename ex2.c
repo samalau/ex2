@@ -131,46 +131,47 @@ int main() {
 
 			// Case 2
 			case 2: {
-				char c ;
-				int ind = 0, i = 0 ;
 				printf("Enter a number:\n") ;
-				while (ind == 0) {
-					char input[MAX_INPUT + 1] = {0} ;
-					ind = 0 ;
-					int frontSection = 0, endSection = 0 ;
-					while (1) {
-						scanf("%c", &c) ;
-						if (c == '\n' || c == EOF) {
-							break ;
-						}
-						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
-							ind = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							break ;
-						}
-						input[ind++] = c ;
+				int frontSection = 0, endSection = 0 ;
+				int number = 0 ;
+				while (number <= 0) {
+					int input = scanf(" %d", &number) ;
+					if (input == EOF) {
+						option = 7 ;
+						break ;
 					}
-					if (ind > 0) {
-						input[ind] = '\0' ;
-					} else {
-						ind = 0 ;
-						printf("Only positive number is allowed, please try again:\n") ;
-						continue ;
-					}
-					i = 0 ;
-					while (input[i] == '0') {
-						i++ ;
-					}
-					if (i == ind) {
-						ind = 0 ;
-					}
-					if (!ind || i == ind) {
+					if (input != 1) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
+					if (number <= 0) {
+						number = 0 ;
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
+						printf("Only positive number is allowed, please try again:\n") ;
+						continue ;
+					}
+				}
+
+				scanf("%*[^\n]") ;
+				scanf("%*c") ;
+
+				if (option == 7) {
+					break ;
+				}
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+		
 					int length = ind - i ;
 					if (length == 1) {
 						frontSection = 0 ;
@@ -208,16 +209,15 @@ int main() {
 			// Case 3
 			case 3: {
 				char c ;
-				int ind = 0, i = 0 ;
 				printf("Enter a number:\n") ;
-				while (ind == 0) {
+				while (1) {
 					char input[MAX_INPUT + 1] = {0} ;
-					ind = 0 ;
+					int ind = 0 ;
 					while (1) {
 						scanf("%c", &c) ;
-						if (c == '\n' || c == EOF) {
-							break ;
-						}
+						// if (c == '\n' || c == EOF) {
+						// 	break ;
+						// }
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
 							scanf("%*[^\n]") ;
@@ -226,6 +226,8 @@ int main() {
 						}
 						input[ind++] = c ;
 					}
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
 					if (ind > 0) {
 						input[ind] = '\0' ;
 					} else {
@@ -233,7 +235,7 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					i = 0 ;
+					int i = 0 ;
 					while (input[i] == '0') {
 						i++ ;
 					}
