@@ -15,7 +15,7 @@ int option = 0 ;
 
 int main() {
 	while (option != 7) {
-		
+
 		option = 0 ;
 
 		printf("Choose an option:"
@@ -132,6 +132,7 @@ int main() {
 
 			// Case 2
 			case 2: {
+				char c ;
 				int ind = 0, i = 0 ;
 				printf("Enter a number:\n") ;
 				while (ind == 0) {
@@ -207,6 +208,7 @@ int main() {
 			
 			// Case 3
 			case 3: {
+				char c ;
 				int ind = 0, i = 0 ;
 				printf("Enter a number:\n") ;
 				while (ind == 0) {
@@ -335,8 +337,9 @@ int main() {
 					}
 					break ;
 				}
+				break ;
 			}
-			break ;
+			
 			// Case 5: Happy numbers
 			case 5: {
 				printf("Enter a number:\n") ;
@@ -385,8 +388,10 @@ int main() {
 				}
 				break ;
 			}
+
 			// Case 6: Festival of Laughter
 			case 6: {
+				char c ;
 				printf("Enter a smile and cheer number:\n") ;
 				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'},
 					cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
