@@ -145,13 +145,6 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					if (number <= 0) {
-						number = 0 ;
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
-						printf("Only positive number is allowed, please try again:\n") ;
-						continue ;
-					}
 				}
 
 				scanf("%*[^\n]") ;
@@ -160,12 +153,12 @@ int main() {
 				if (option == 7) {
 					break ;
 				}
-				
+
 				int frontSection = 0, endSection = 0 ;
 				int length = 0 ;
 				int remain = number ;
 				while (remain != 0) {
-					remain = number / 10 ;
+					remain = remain / 10 ;
 					length++ ;
 				}
 				if (length == 1) {
@@ -200,66 +193,52 @@ int main() {
 
 			// Case 3
 			case 3: {
-				char c ;
+
 				printf("Enter a number:\n") ;
-				while (1) {
-					char input[MAX_INPUT + 1] = {0} ;
-					int ind = 0 ;
-					while (1) {
-						scanf("%c", &c) ;
-						// if (c == '\n' || c == EOF) {
-						// 	break ;
-						// }
-						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
-							ind = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							break ;
-						}
-						input[ind++] = c ;
+				int number = 0 ;
+				while (number <= 0) {
+					int input = scanf(" %d", &number) ;
+					if (input == EOF) {
+						option = 7 ;
+						break ;
 					}
-					scanf("%*[^\n]") ;
-					scanf("%*c") ;
-					if (ind > 0) {
-						input[ind] = '\0' ;
-					} else {
-						ind = 0 ;
+					if (input != 1) {
+						scanf("%*[^\n]") ;
+						scanf("%*c") ;
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-					int i = 0 ;
-					while (input[i] == '0') {
-						i++ ;
-					}
-					if (i == ind) {
-						ind = 0 ;
-					}
-					int k = 0, n = 0 ;
-					for (k = i ; k < ind ; k++) {
-						n = n * 10 + (input[k] - '0') ;
-					}
-					if (n < 1 || n > MAX_INPUT) {
-						ind = 0 ;
-						printf("Only positive number is allowed, please try again:\n") ;
-						continue ;
-					}
-					int sum = 0 ;
-					for (i = 1 ; i * i <= n ; i++) {
-						if (n % i == 0) {
-							sum += i ;
-							if (i != n / i) {
-								sum += n / i ;
-							}
-						}
-					}
-					if (sum > n) {
-						printf("This number is generous!\n") ;
-					} else {
-						printf("This number does not share.\n") ;
-					}
+					// if (number <= 0) {
+					// 	number = 0 ;
+					// 	scanf("%*[^\n]") ;
+					// 	scanf("%*c") ;
+					// 	printf("Only positive number is allowed, please try again:\n") ;
+					// 	continue ;
+					// }
+				}
+
+				scanf("%*[^\n]") ;
+				scanf("%*c") ;
+
+				if (option == 7) {
 					break ;
 				}
-			break ;
+
+				int sum = 0 ;
+				for (int i = 1 ; i * i <= number ; i++) {
+					if (number % i == 0) {
+						sum += i ;
+						if (i != number / i) {
+							sum += number / i ;
+						}
+					}
+				}
+				if (sum > number) {
+					printf("This number is generous!\n") ;
+				} else {
+					printf("This number does not share.\n") ;
+				}
+				break ;
 			}
 			
 			// Case 4
