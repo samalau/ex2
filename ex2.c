@@ -139,7 +139,7 @@ int main() {
 					ind = 0 ;
 					int frontSection = 0, endSection = 0 ;
 					while (1) {
-						c = getchar() ;
+						scanf("%c", &c) ;
 						if (c == '\n' || c == EOF) {
 							break ;
 						}
@@ -214,7 +214,10 @@ int main() {
 					char input[MAX_INPUT + 1] = {0} ;
 					ind = 0 ;
 					while (1) {
-						scanf("%c", c) ;
+						scanf("%c", &c) ;
+						if (c == '\n' || c == EOF) {
+							break ;
+						}
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
 							scanf("%*[^\n]") ;
