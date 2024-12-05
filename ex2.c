@@ -401,7 +401,7 @@ int main() {
 					int invalid = 0 ;
 					char smileLetter, itIsSmile, cheerLetter, itIsCheer ;
 					for (int i = 0 ; i < 7 ; i++) {
-						scanf(" %c", smileLetter) ;
+						scanf(" %c", &smileLetter) ;
 						if (smileLetter != smileCheck[i]) {
 							scanf("%*[^\n]") ;
 							scanf("%*c") ;
@@ -416,9 +416,9 @@ int main() {
 							invalid = 1 ;
 						}
 						if (!invalid) {
-							scanf(" %c", itIsSmile) ;
+							scanf(" %c", &itIsSmile) ;
 						}
-						if (itIsSmile != ":") {
+						if (itIsSmile != ':') {
 							invalid = 1 ;
 						}
 						if (!invalid) {
@@ -428,7 +428,7 @@ int main() {
 						}
 						if (!invalid) {
 							for (int i = 0 ; i < 7 ; i++) {
-								scanf(" %c", cheerLetter) ;
+								scanf(" %c", &cheerLetter) ;
 								if (cheerLetter != cheerCheck[i]) {
 									saysSmile = 0 ;
 									break ;
@@ -454,9 +454,9 @@ int main() {
 						invalid = 1 ;
 					}
 					if (!invalid) {
-						scanf(" %c", itIsCheer) ;
+						scanf(" %c", &itIsCheer) ;
 					}
-					if (itIsCheer != ":") {
+					if (itIsCheer != ':') {
 						invalid = 1 ;
 					}
 					if (!invalid) {
