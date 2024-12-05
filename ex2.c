@@ -214,10 +214,7 @@ int main() {
 					char input[MAX_INPUT + 1] = {0} ;
 					ind = 0 ;
 					while (1) {
-						c = getchar() ;
-						if (c == '\n' || c == EOF) {
-							break ;
-						}
+						scanf("%c", c) ;
 						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
 							ind = 0 ;
 							scanf("%*[^\n]") ;
@@ -355,10 +352,8 @@ int main() {
 						printf("Only positive number is allowed, please try again:\n") ;
 						continue ;
 					}
-
 					scanf("%*[^\n]") ;
 					scanf("%*c") ;
-				
 					printf("Between 1 and %d only these numbers bring happiness: ", finalNumber) ;
 					for (int i = 1 ; i <= finalNumber ; i++) {
 						int seen[1000] = {0};
@@ -390,114 +385,32 @@ int main() {
 
 			// Case 6: Festival of Laughter
 			case 6: {
-
 				printf("Enter a smile and cheer number:\n") ;
-
-				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', '\0'} ;
-				char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', '\0'} ;
-
-				int smileNumber, cheerNumber ;
-				int saysSmile = 0, saysCheer = 0 ;
-
-				while (!saysSmile || !saysCheer) {
-					saysSmile = 0 ;
-					saysCheer = 0 ;
-
-					char smileLetter, itIsSmile, cheerLetter, itIsCheer ;
-
-					for (int i = 0 ; i < 5 ; i++) {
-						scanf(" %c", &smileLetter) ;
-						if (smileLetter != smileCheck[i]) {
-							break ;
-						}
-						if (i == 4) {
-							saysSmile = 1 ;
-						}
-					}
-
-					if (saysSmile) {
-						scanf(" %c", &itIsSmile) ;
-						if (itIsSmile != ':') {
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
-						
-						if (scanf(" %d", &smileNumber) != 1 || smileNumber <= 0) {
-							saysSmile = 0 ;
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
-							printf("Only 2 different positive numbers in the given format"
-									" are allowed for the festival, please try again:\n") ;
-							continue ;
-						}
-					}
-					for (int i = 0 ; i < 5 ; i++) {
-						scanf(" %c", &cheerLetter) ;
-						if (cheerLetter != cheerCheck[i]) {
-							saysSmile = 0 ;
-							break ;
-						}
-						if (i == 4) {
-							if (scanf("%*[^,]") != 1) {
-								saysSmile = 0 ;
-							} else {
-								saysCheer = 1 ;
-							}
-						}
-					}
-					if (!saysSmile) {
+				int smileNumber = 0, cheerNumber = 0 ;
+				while (1) {
+					if (scanf(" smile : %d , cheer : %d", &smileNumber, &cheerNumber) != 2 ||
+							smileNumber <= 0 || cheerNumber <= 0 || smileNumber == cheerNumber) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only 2 different positive numbers in the given format"
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
 					}
-					if (scanf("%*[^:]") != 1) {
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
-						printf("Only 2 different positive numbers in the given format"
-								" are allowed for the festival, please try again:\n") ;
-						continue ;
-					}
-					
-					scanf(" %c", &itIsCheer) ;
-					if (scanf(" %d", &cheerNumber) != 1 || cheerNumber <= 0) {
-						saysSmile = 0 ;
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
-						printf("Only 2 different positive numbers in the given format"
-								" are allowed for the festival, please try again:\n") ;
-						continue ;
-					}
-				}
-
-				scanf("%*[^\n]") ;
-				scanf("%*c") ;
-
-				printf("Enter maximum number for the festival:\n") ;
-				int maxNum = 0 ;
-				while (maxNum <= 0) {
-					int input = scanf(" %d", &maxNum) ;
-					if (input == EOF) {
-						option = 7 ;
-						break ;
-					}
-					if (input != 1 || maxNum <= 0) {
-						maxNum = 0 ;
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
-						printf("Only positive maximum number is allowed, please try again:\n") ;
-						continue ;
-					}
-					scanf("%*[^\n]") ;
-					scanf("%*c") ;
-				}
-				if (option == 7) {
 					break ;
 				}
+				scanf("%*[^\n]") ;
+				scanf("%*c") ;
+				printf("Enter maximum number for the festival:\n") ;
+				int maxNum = 0 ;
+				if (scanf(" %d", &maxNum) != 1 || maxNum <= 0) {
+					maxNum = 0 ;
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+					printf("Only positive maximum number is allowed, please try again:\n") ;
+					continue ;
+				}
+				scanf("%*[^\n]") ;
+				scanf("%*c") ;
 				for (int i = 1 ; i <= maxNum ; i++) {
 					int isSmile = (i % smileNumber) == 0 ;
 					int isCheer = (i % cheerNumber) == 0 ;
