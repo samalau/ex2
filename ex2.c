@@ -392,48 +392,56 @@ int main() {
 			case 6: {
 
 				printf("Enter a smile and cheer number:\n") ;
-				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'},
-					cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
+				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', '\0'} ;
+				char cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', '\0'} ;
 				int smileNumber, cheerNumber ;
-				int saysSmile = 0 ;
-				int saysCheer = 0 ;
+				int saysSmile = 0, saysCheer = 0 ;
 				while (!saysSmile && !saysCheer) {
-					int invalid = 0 ;
+					saysSmile = 0 ;
+					saysCheer = 0 ;
 					char smileLetter, itIsSmile, cheerLetter, itIsCheer ;
-					for (int i = 0 ; i < 7 ; i++) {
+					for (int i = 0 ; i < 5 ; i++) {
 						scanf(" %c", &smileLetter) ;
 						if (smileLetter != smileCheck[i]) {
-							scanf("%*[^\n]") ;
-							scanf("%*c") ;
 							break ;
 						}
-						if (i == 7) {
+						if (i == 4) {
 							saysSmile = 1 ;
 						}
 					}
 					if (saysSmile) {
 						if (scanf("%*[^:]") != 1) {
-							invalid = 1 ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
+							printf("Only 2 different positive numbers in the given format"
+									" are allowed for the festival, please try again:\n") ;
+							continue ;
 						}
-						if (!invalid) {
-							scanf(" %c", &itIsSmile) ;
-						}
+						scanf(" %c", &itIsSmile) ;
 						if (itIsSmile != ':') {
-							invalid = 1 ;
+							saysSmile = 0 ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
+							printf("Only 2 different positive numbers in the given format"
+									" are allowed for the festival, please try again:\n") ;
+							continue ;
 						}
 						if (!invalid) {
 							if (scanf(" %d", &smileNumber) != 1 || smileNumber <= 0) {
-								invalid = 1 ;
+								saysSmile = 0 ;
+								scanf("%*[^\n]") ;
+								scanf("%*c") ;
+								printf("Only 2 different positive numbers in the given format"
+										" are allowed for the festival, please try again:\n") ;
+								continue ;
 							}
-						}
-						if (!invalid) {
-							for (int i = 0 ; i < 7 ; i++) {
+							for (int i = 0 ; i < 5 ; i++) {
 								scanf(" %c", &cheerLetter) ;
 								if (cheerLetter != cheerCheck[i]) {
 									saysSmile = 0 ;
 									break ;
 								}
-								if (i == 7) {
+								if (i == 4) {
 									if (scanf("%*[^,]") != 1) {
 										saysSmile = 0 ;
 									} else {
@@ -443,7 +451,7 @@ int main() {
 							}
 						}
 					}
-					if (!saysSmile) {
+					if (!saysSmile ) {
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only 2 different positive numbers in the given format"
@@ -455,13 +463,13 @@ int main() {
 					}
 					if (!invalid) {
 						scanf(" %c", &itIsCheer) ;
-					}
-					if (itIsCheer != ':') {
-						invalid = 1 ;
-					}
-					if (!invalid) {
 						if (scanf(" %d", &cheerNumber) != 1 || cheerNumber <= 0) {
-							invalid = 1 ;
+							saysSmile = 0 ;
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
+							printf("Only 2 different positive numbers in the given format"
+									" are allowed for the festival, please try again:\n") ;
+							continue ;
 						}
 					}
 					if (invalid) {
@@ -498,7 +506,8 @@ int main() {
 					scanf("%*c") ;
 				}
 				for (int i = 1 ; i <= maxNum ; i++) {
-					int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
+					int isSmile = (i % smileNumber) == 0 ;
+					int isCheer = (i % cheerNumber) == 0 ;
 					if (isSmile && isCheer) {
 						printf("Festival!\n") ;
 					} else if (isSmile) {
