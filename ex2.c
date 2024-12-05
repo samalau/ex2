@@ -57,7 +57,7 @@ int main() {
 
 				printf("Enter face size:\n") ;
 				int faceSize = 0 ;
-				while (faceSize % 2 == 0 || faceSize <= 0) {
+				while (faceSize <= 0 || faceSize % 2 == 0) {
 					char faceSizeInput[MAX_INPUT + 1] = {0} ;
 					char faceDigit = '\0' ;
 					int ind = 0 ;
@@ -66,11 +66,11 @@ int main() {
 							option = 7 ;
 							break ;
 						}
-						if (!faceDigit) {
+						if (faceDigit == '\0') {
 								scanf("%*[^\n]") ;
 								scanf("%*c") ;
 								printf("The face's size must be an odd and positive number, please try again:\n") ;
-								continue ;
+								break ;
 							}
 						if (faceDigit == '\n') {
 							if (faceSizeInput[ind - 1] % 2 == 1) {
