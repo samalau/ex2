@@ -85,22 +85,21 @@ int main() {
 					// Draw eyes
 					int secondEye = faceSize + 1 ;
 					for (int i = 0 ; i <= secondEye ; i++) {
-						if (i == 0) {
-							putchar(eyes) ;
-						} else if (i == secondEye) {
-							printf("%c\n", eyes) ;
+						if (i == 0 || i == secondEye) {
+							printf("%c", eyes) ;
 						} else {
-							putchar(' ') ;
+							printf(" ") ;
 						}
 					}
+					printf("\n") ;
 
 					// Draw nose
-					int second = (1 + faceSize) / 2 ;
+					int second = (faceSize + 1) / 2 ;
 					for (int i = 0 ; i <= second ; i++) {
 						if (i == second) {
 							printf("%c\n", nose) ;
 						} else {
-							putchar(' ') ;
+							printf(" ") ;
 						}
 					}
 
@@ -108,11 +107,11 @@ int main() {
 					int makeMouth = faceSize + 1 ;
 					for (int i = 0 ; i <= makeMouth ; i++) {
 						if (i == 0) {
-							putchar('\\') ;
+							printf("\\") ;
 						} else if (i == makeMouth) {
 							printf("/\n") ;
 						} else {
-							putchar(mouth) ;
+							printf("%c", mouth) ;
 						}
 					}
 					scanf("%*[^\n]") ;
