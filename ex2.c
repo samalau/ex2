@@ -86,9 +86,10 @@ int main() {
 						}
 					}
 
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
+
 					if (option == 7) {
-						scanf("%*[^\n]") ;
-						scanf("%*c") ;
 						break ;
 					}
 
@@ -124,8 +125,6 @@ int main() {
 							printf("%c", mouth) ;
 						}
 					}
-					// scanf("%*[^\n]") ;
-					// scanf("%*c") ;
 				}
 				break ;
 			}
