@@ -469,22 +469,55 @@ int main() {
 							c = getchar() ;
 						}
 					}
+
+
+
 					
-					while (!cheerNumber) {
-						char identifyCheer[7] = {0} ;
-						char cheerNumberIn[MAX_INPUT + 1] = {0} ;
+					int saysSmile = 0 ;
+					int saysCheer = 0 ;
+					while (!saysSmile && !saysCheer) {
+						if (saysSmile) {
+							char cheerLetter ;
+							for (int i = 0 ; i < 7 ; i++) {
+								scanf(" %c", cheerLetter) ;
+								if (cheerLetter != cheerCheck[i]) {
+									saysSmile = 0 ;
+									scanf("%*[^\n]") ;
+									scanf("%*c") ;
+									break ;
+								}
+								if (i == 7) {
+									saysCheer = 1 ;
+								}
+							}
+						}
+						if (!saysCheer) {
+							continue ;
+						}
+						char itIs ;
+						if (scanf("%*[^\:]") != 1) {
+							saysSmile = 0 ;
+							saysCheer = 0 ;
+							continue ;
+						}
+						scanf("%c", itIs) ;
+						if (itIs != ":") {
+							saysSmile = 0 ;
+							saysCheer = 0 ;
+							continue ;
+						}
+					}
+
+					
+					
+
+					char cheerNumberIn[MAX_INPUT + 1] = {0} ;
 						cheerNumber = 0, maximum = 0 ;
 						ind = 0 ;
-						while (c != ':' && c != '\n' && (c < '0' || '9' < c)) {
-							if (c != ' ' && c != '\t') {
-								identifyCheer[ind++] = c ;
-							}
-							c = getchar() ;
-						}
-						if (c == ':') {
-							identifyCheer[ind++] = c ;
-						}
-						identifyCheer[ind] = '\0' ;
+						int cheerNumberInput = scanf(" %d", cheerNumber) ;
+
+						
+						
 						for (int j = 0 ; j < 6 ; j++) {
 							if (identifyCheer[j] != cheerCheck[j]) {
 								identifyCheer[0] = ' ' ;
@@ -496,16 +529,16 @@ int main() {
 							}
 						}
 						if (identifyCheer[0] == ' ') continue ;
-						c = getchar() ;
-						while (c == ' ') {
-							c = getchar() ;
-						}
-						if (c < '0' || '9' < c ) {
+						if (scanf("%*[^\123456790]") != 1) {
 							scanf("%*[^\n]") ;
 							scanf("%*c") ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
-							continue ;
+							break ;
+						}
+						scanf("%*c") ;
+						if (c < '0' || '9' < c ) {
+							
 						}
 						ind = 0 ;
 						while ('0' <= c && c <= '9') {
@@ -529,9 +562,8 @@ int main() {
 						}
 						if (cheerNumber <= 0) {
 							cheerNumber = 0 ;
-							if (c != '\n') {
-								while ((c = getchar()) != '\n' && c != EOF) ;
-							}
+							scanf("%*[^\n]") ;
+							scanf("%*c") ;
 							printf("Only 2 different positive numbers in the given format"
 									" are allowed for the festival, please try again:\n") ;
 							continue ;
