@@ -162,8 +162,8 @@ int main() {
 					length++ ;
 				}
 				if (length == 1) {
-					frontSection = 0 ;
-					endSection = 0 ;
+					printf("This number is balanced and brings harmony!\n") ;
+					break ;
 				} else {
 					int chunk = length / 2 ;
 					int divider = 1 ;
@@ -181,19 +181,18 @@ int main() {
 							*sectionSpecific = (*sectionSpecific % 10) + (*sectionSpecific / 10) ;
 						}
 					}
-				}
 
-				if (frontSection == endSection) {
-					printf("This number is balanced and brings harmony!\n") ;
+					if (frontSection == endSection) {
+						printf("This number is balanced and brings harmony!\n") ;
+						break ;
+					}
+					printf("This number isn't balanced and destroys harmony.\n") ;
 					break ;
 				}
-				printf("This number isn't balanced and destroys harmony.\n") ;
-				break ;
 			}
 
 			// Case 3
 			case 3: {
-
 				printf("Enter a number:\n") ;
 				int number = 0 ;
 				while (number <= 0) {
@@ -219,7 +218,7 @@ int main() {
 
 				int sum = 0 ;
 				for (int i = 1 ; i * i <= number ; i++) {
-					if (number % i == 0) {
+					if (number % i == 0 && (number / i) != number) {
 						sum += i ;
 						if (i != number / i) {
 							sum += number / i ;
