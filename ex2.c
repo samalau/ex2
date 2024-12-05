@@ -390,6 +390,7 @@ int main() {
 
 			// Case 6: Festival of Laughter
 			case 6: {
+
 				printf("Enter a smile and cheer number:\n") ;
 				char smileCheck[7] = {'s', 'm', 'i', 'l', 'e', ':', '\0'},
 					cheerCheck[7] = {'c', 'h', 'e', 'e', 'r', ':', '\0'} ;
@@ -472,47 +473,31 @@ int main() {
 								" are allowed for the festival, please try again:\n") ;
 						continue ;
 					}
-
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
 				}
-	
-					
 
-					char cheerNumberIn[MAX_INPUT + 1] = {0} ;
-						cheerNumber = 0, maximum = 0 ;
-						ind = 0 ;
-						int cheerNumberInput = scanf(" %d", cheerNumber) ;
+				printf("Enter maximum number for the festival:\n") ;
+				int maxNum = 0 ;
+				while (maxNum <= 0) {
+					int input = scanf(" %d", &maxNum) ;
+					if (input == EOF) {
+						option = 7 ;
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
+						break ;
 					}
-				}
-				printf("Enter maximum number for the festival:\n") ;
-				while (!maximum) {
-					char maximumInput[MAX_INPUT + 1] = {0} ;
-					maximum = 0 ;
-					ind = 0 ;
-					while ((c = getchar()) != '\n' && c != EOF) {
-						if (ind >= MAX_INPUT - 1 || c < '0' || '9' < c) {
-							maximumInput[0] = ' ' ;
-							break ;
-						}
-						maximumInput[ind++] = c ;
-					}
-					maximumInput[ind] = '\0' ;
-					int i = 0 ; 
-					while (maximumInput[i] == '0') i++ ;
-					if (i == ind || maximumInput[0] == ' ') {
+					if (input != 1 || maxNum <= 0) {
+						maxNum = 0 ;
 						scanf("%*[^\n]") ;
 						scanf("%*c") ;
 						printf("Only positive maximum number is allowed, please try again:\n") ;
 						continue ;
 					}
-					int n = 0 ;
-					for (int k = i ; k < ind ; k++) {
-						n = n * 10 + (maximumInput[k] - '0') ;
-					}
-					maximum = n ;
+					scanf("%*[^\n]") ;
+					scanf("%*c") ;
 				}
-				for (int i = 1 ; i <= maximum ; i++) {
+				for (int i = 1 ; i <= maxNum ; i++) {
 					int isSmile = (i % smileNumber) == 0, isCheer = (i % cheerNumber) == 0 ;
 					if (isSmile && isCheer) {
 						printf("Festival!\n") ;
